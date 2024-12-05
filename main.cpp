@@ -1,5 +1,5 @@
 #include <iostream>
-//#include "menus.h"
+#include "menus.h"
 using namespace std;
 
 int main(){
@@ -15,7 +15,7 @@ int main(){
 			
 			switch(opcion){
 				case 1:
-					//menuCliente();
+					menuCliente();
 					break;
 				case 2:
 					//menuCarta();
