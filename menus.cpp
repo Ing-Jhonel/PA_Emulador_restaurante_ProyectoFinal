@@ -1,6 +1,7 @@
 #include <iostream>
 #include "menus.h"
 #include "funcionesMenuClientes.h"
+#include "funcionesMenuCarta.h"
 using namespace std;
 
 void menuCliente(){
@@ -50,16 +51,16 @@ void menuCarta(){
 			
 			switch(opcion){
 				case 'A':
-					clientes[cantClientes].agregarCliente();
+					comida[cantComidas].agregarComida();
 					break;
 				case 'B':
-					clientes[cantClientes].editarCliente();
+					comida[cantComidas].editarCarta();
 					break;
 				case 'C':
-					clientes[cantClientes].ordenarCliente();
+					comida[cantComidas].eliminarComida();
 					break;
 				case 'D':
-					clientes[cantClientes].eliminarCliente();
+					comida[cantComidas].verCarta();
 					break;
 				case 'E':
 					cout << "Volviendo al menu principal..." << endl;

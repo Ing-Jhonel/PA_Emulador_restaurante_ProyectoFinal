@@ -18,7 +18,7 @@ int main(){
 					menuCliente();
 					break;
 				case 2:
-					//menuCarta();
+					menuCarta();
 					break;
 				case 3:
 					//menuFinanza();

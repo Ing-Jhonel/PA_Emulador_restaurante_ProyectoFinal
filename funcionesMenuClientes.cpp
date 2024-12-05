@@ -8,6 +8,7 @@ Cliente::Cliente(string n, int dni, string t, string c, string d) {
     direccion = d;
     DNI = dni;
 }   
+
 Cliente clientes[maxClientes] = {
     Cliente("Juan Perez", 12345, "+51 934 567 899", "juanperez@email.com", "Calle Falsa 123"),
     Cliente("Maria Lopez", 23456, "+58 967 234 563", "maria@email.com", "Avenida Siempre Viva 742"),
@@ -41,33 +42,41 @@ void Cliente::agregarCliente() {
         //clientes[cantClientes].asignarDatos(nombre, telefono, direccion, correo, DNI);
         cantClientes++;
     } else {
-        cout << "No puede agregar más clientes." << endl;
+        cout << "No puede agregar mas clientes." << endl;
     }
 }
 
-void Cliente::editarCliente(){
-	int buscar, indiceEncontrado; bool encontrado=false;
-	cout << "Editar Cliente" << endl << endl;
-	cout << "Ingrese el DNI: "; cin >> buscar;
-	for(int i=0; i<cantClientes; i++){
-		if(clientes[i].DNI == buscar){
-			encontrado=true;
-			indiceEncontrado=i;
-		}
-	}
-	
-	if(encontrado){
-		cout << "Ingrese los nuevos datos" << endl << endl;
-		cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
-        cout << "DNI: ";cin >> DNI;
-		cin.ignore();
-        cout << "Telefono: "; getline(cin, telefono);
-        cout << "Correo: "; getline(cin, correo);
-        cout << "Direccion: "; getline(cin, direccion);
-	} else {
-		cout << "Cliente no encontrado." << endl;
-	}
+void Cliente::editarCliente() {
+    int buscar;
+    bool encontrado = false;
+    cout << "Editar Cliente" << endl << endl;
+    cout << "Ingrese el DNI: "; 
+    cin >> buscar;
+
+    // Buscar el cliente por DNI
+    for (int i = 0; i < cantClientes; i++) {
+        if (clientes[i].DNI == buscar) {
+            encontrado = true;
+
+            // Pedir nuevos datos para actualizar al cliente encontrado
+            cout << "Ingrese los nuevos datos" << endl << endl;
+            cout << "Nombre: "; cin.ignore(); getline(cin, clientes[i].nombre);
+            cout << "DNI: "; cin >> clientes[i].DNI;
+            cin.ignore();
+            cout << "Telefono: "; getline(cin, clientes[i].telefono);
+            cout << "Correo: "; getline(cin, clientes[i].correo);
+            cout << "Direccion: "; getline(cin, clientes[i].direccion);
+
+            cout << "Cliente actualizado correctamente." << endl;
+            return; // Salir de la función después de actualizar
+        }
+    }
+
+    if (!encontrado) {
+        cout << "Cliente no encontrado." << endl;
+    }
 }
+
 
 void Cliente::ordenarCliente() {
 	
