@@ -1,5 +1,6 @@
 #include <iostream>
 #include "menus.h"
+#include "funcionesMenuAdministracion.h"
 using namespace std;
 
 int main(){
@@ -9,7 +10,7 @@ int main(){
 		cout << "Menu Principal" << endl << endl
 			<< "1) Cliente" << endl
 			<< "2) Carta" << endl
-			<< "3) Finanza" << endl 
+			<< "3) Administracion" << endl 
 			<< "4) Salir "<< endl << endl
 			<< "= "; cin >> opcion;
 			
@@ -21,7 +22,12 @@ int main(){
 					menuCarta();
 					break;
 				case 3:
-					//menuFinanza();
+					if(login()){
+						cout << endl << endl;
+						menuAdministracion();
+					} else {
+						cout << "Contraseña incorrecta. No puede ingresar, lo siento." << endl;
+					}
 					break;
 				case 4:
 					cout << "Saliendo del programa." << endl;

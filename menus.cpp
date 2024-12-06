@@ -2,6 +2,8 @@
 #include "menus.h"
 #include "funcionesMenuClientes.h"
 #include "funcionesMenuCarta.h"
+#include "funcionesMenuAdministracion.h"
+
 using namespace std;
 
 void menuCliente(){
@@ -45,8 +47,9 @@ void menuCarta(){
 			<< "A) Agregar comida" << endl
 			<< "B) Eliminar comida" << endl
 			<< "C) Editar carta" << endl
-			<< "D) Ver carta" << endl
-			<< "E) Volver menu principal" << endl << endl
+			<< "D) Ordenar comida" << endl
+			<< "E) Ver carta" << endl
+			<< "F) Volver menu principal" << endl << endl
 			<< "= "; cin >> opcion;
 			
 			switch(opcion){
@@ -60,7 +63,44 @@ void menuCarta(){
 					comida[cantComidas].eliminarComida();
 					break;
 				case 'D':
+					comida[cantComidas].ordenarComida();
+					break;
+				case 'E':
 					comida[cantComidas].verCarta();
+					break;
+				case 'F':
+					cout << "Volviendo al menu principal..." << endl;
+					break;
+				default:
+					cout << "Indique una opcion valida." << endl;
+					break;
+			}
+	} while(opcion!='F');
+}
+
+void menuAdministracion(){
+	char opcion;
+	do{
+		cout << "Menu Administracion" << endl << endl
+			<< "A) Mostrar facturas" << endl
+			<< "B) Gastos y ganancias" << endl
+			<< "C) Ordenar mas vendido" << endl
+			<< "D) Estadisticas generales" << endl
+			<< "E) Volver menu principal" << endl << endl
+			<< "= "; cin >> opcion;
+			
+			switch(opcion){
+				case 'A':
+					Administracion::mostrarFacturas();
+					break;
+				case 'B':
+					Administracion::gastosYGanancias();
+					break;
+				case 'C':
+					Administracion::ordenarMasVendido();
+					break;
+				case 'D':
+					Administracion::estadisticasGenerales();
 					break;
 				case 'E':
 					cout << "Volviendo al menu principal..." << endl;
@@ -70,8 +110,4 @@ void menuCarta(){
 					break;
 			}
 	} while(opcion!='E');
-}
-
-void menuFinanza(){
-	
 }

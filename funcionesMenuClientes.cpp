@@ -1,48 +1,42 @@
 #include "funcionesMenuClientes.h"
 using namespace std;
 
-Cliente::Cliente(string n, int dni, string t, string c, string d) {
-    nombre = n;
-    telefono = t;
-    correo = c;
+Personas::Personas(string n, int dni, int e){
+	nombre=n;
+	DNI=dni;
+	edad=e;
+}
+
+Cliente::Cliente(string n, int dni, int e, string t, string c, string d) : Personas(n, dni, e) {
+    telefono=t;
+	correo = c;
     direccion = d;
-    DNI = dni;
 }   
 
 Cliente clientes[maxClientes] = {
-    Cliente("Juan Perez", 12345, "+51 934 567 899", "juanperez@email.com", "Calle Falsa 123"),
-    Cliente("Maria Lopez", 23456, "+58 967 234 563", "maria@email.com", "Avenida Siempre Viva 742"),
-    Cliente("Carlos Garcia", 34567, "+57 956 123 435", "carlos@email.com", "Calle Real 456"),
-    Cliente("Ana Fernandez", 45678, "+1 936 324 923", "ana@email.com", "Calle A 789")
+    Cliente("Juan Perez", 12345, 30, "+51 934 567 899", "juanperez@email.com", "Calle Falsa 123"),
+    Cliente("Maria Lopez", 23456, 25, "+58 967 234 563", "maria@email.com", "Avenida Siempre Viva 742"),
+    Cliente("Carlos Garcia", 34567, 35, "+57 956 123 435", "carlos@email.com", "Calle Real 456"),
+    Cliente("Ana Fernandez", 45678, 28, "+1 936 324 923", "ana@email.com", "Calle A 789")
 };
 
 int cantClientes = 4;  // Inicializar el contador de clientes
-
-/*
-void Cliente::asignarDatos(string n, string t, string d, string c, int dni) {
-    nombre = n;
-    telefono = t;
-    direccion = d;
-    correo = c;
-    DNI = dni;
-}*/
 
 void Cliente::agregarCliente() {
     if (cantClientes < maxClientes) {
         cout << "Agregar Cliente" << endl << endl;
 
         cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
-        cout << "DNI: ";cin >> DNI;
-		cin.ignore();
+        cout << "Edad: "; cin >> edad;
+        cout << "DNI: "; cin >> DNI;
+        cin.ignore();
         cout << "Telefono: "; getline(cin, telefono);
         cout << "Correo: "; getline(cin, correo);
         cout << "Direccion: "; getline(cin, direccion);
-
-        // Usar el método asignarDatos para asignar los datos al nuevo cliente
-        //clientes[cantClientes].asignarDatos(nombre, telefono, direccion, correo, DNI);
+        //clientes[cantClientes] = Cliente(nombre, DNI, edad, telefono, correo, direccion);
         cantClientes++;
     } else {
-        cout << "No puede agregar mas clientes." << endl;
+        cout << "No puede agregar más clientes." << endl;
     }
 }
 
@@ -53,14 +47,13 @@ void Cliente::editarCliente() {
     cout << "Ingrese el DNI: "; 
     cin >> buscar;
 
-    // Buscar el cliente por DNI
     for (int i = 0; i < cantClientes; i++) {
         if (clientes[i].DNI == buscar) {
             encontrado = true;
 
-            // Pedir nuevos datos para actualizar al cliente encontrado
             cout << "Ingrese los nuevos datos" << endl << endl;
             cout << "Nombre: "; cin.ignore(); getline(cin, clientes[i].nombre);
+            cout << "Edad: "; cin >> clientes[i].edad;
             cout << "DNI: "; cin >> clientes[i].DNI;
             cin.ignore();
             cout << "Telefono: "; getline(cin, clientes[i].telefono);
@@ -68,7 +61,7 @@ void Cliente::editarCliente() {
             cout << "Direccion: "; getline(cin, clientes[i].direccion);
 
             cout << "Cliente actualizado correctamente." << endl;
-            return; // Salir de la función después de actualizar
+            return;
         }
     }
 
@@ -77,18 +70,15 @@ void Cliente::editarCliente() {
     }
 }
 
-
 void Cliente::ordenarCliente() {
-	
-	Cliente copia[cantClientes];
-	for(int i=0; i<cantClientes; i++){
-		copia[i]=clientes[i];
-	}
-	
+    Cliente copia[maxClientes];
+    for (int i = 0; i < cantClientes; i++) {
+        copia[i] = clientes[i];
+    }
+
     for (int i = 0; i < cantClientes - 1; ++i) {
         for (int j = i + 1; j < cantClientes; ++j) {
             if (copia[i].nombre > copia[j].nombre) {
-                // Intercambiar los clientes
                 Cliente temp = copia[i];
                 copia[i] = copia[j];
                 copia[j] = temp;
@@ -98,7 +88,7 @@ void Cliente::ordenarCliente() {
 
     cout << "Clientes ordenados alfabéticamente:" << endl;
     for (int i = 0; i < cantClientes; ++i) {
-        cout << copia[i].nombre << endl;
+        cout << copia[i].nombre << " (DNI: " << copia[i].DNI << ")" << endl;
     }
 }
 
@@ -124,17 +114,4 @@ void Cliente::eliminarCliente() {
         cout << "Cliente no encontrado." << endl;
     }
 }
-
-/*void Cliente::mostrarClientes() {
-    if (cantClientes > 0) {
-        cout << "Clientes actuales:" << endl;
-        for (int i = 0; i < cantClientes; ++i) {
-            cout << clientes[i].nombre << ", " << clientes[i].edad << " años, Tel: " << clientes[i].telefono << endl;
-        }
-    } else {
-        cout << "No hay clientes registrados." << endl;
-    }
-}
-*/
-
 

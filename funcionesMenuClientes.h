@@ -8,29 +8,30 @@ using namespace std;
 const int maxClientes = 100;  // Definir el límite de clientes
 extern int cantClientes;
 
-class Cliente {
-	private:
-	    string nombre, telefono, correo, direccion;
-	    int DNI;
+class Personas {
+	protected:
+	    string nombre;
+	    int DNI, edad;
 	public:
 	    // Constructor por defecto
-	    Cliente() : nombre(""), telefono(""), correo(""), direccion(""), DNI(0) {}
-	    
-	    // Constructor con parámetros
-	    Cliente(string n, int dni, string t, string c, string d);
-	    
-	    // Métodos para manejar la lógica de clientes
-	    //void asignarDatos(string, string, string, string, int);
-	    
+	    Personas(string, int, int);
+};
+
+class Cliente : public Personas {
+	private:
+	    string telefono, correo, direccion;
+	
+	public:
+		Cliente() : Personas("", 0, 0), telefono(""), correo(""), direccion("") {}
+		Cliente(string, int, int, string, string, string);
+		
 	    void agregarCliente();
 	    void editarCliente();
 	    void ordenarCliente();
 	    void eliminarCliente();
-	    //void mostrarClientes();
 };
 
 extern Cliente clientes[maxClientes];
 
 #endif
-
 

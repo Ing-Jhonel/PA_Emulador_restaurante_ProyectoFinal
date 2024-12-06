@@ -3,6 +3,6 @@
 
 void menuCliente();
 void menuCarta();
-void menuFinanza();
+void menuAdministracion();
 
 #endif
