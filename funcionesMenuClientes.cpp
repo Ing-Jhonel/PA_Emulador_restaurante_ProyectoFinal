@@ -1,30 +1,58 @@
 #include "funcionesMenuClientes.h"
+#include <fstream>
+#include <iostream>
+
 using namespace std;
 
-Personas::Personas(string n, int dni, int e){
-	nombre=n;
-	DNI=dni;
-	edad=e;
+Personas::Personas(string n, int dni, int e) {
+    nombre = n;
+    DNI = dni;
+    edad = e;
 }
 
 Cliente::Cliente(string n, int dni, int e, string t, string c, string d) : Personas(n, dni, e) {
-    telefono=t;
-	correo = c;
+    telefono = t;
+    correo = c;
     direccion = d;
-}   
+}
 
-Cliente clientes[maxClientes] = {
+
+Cliente clientes[maxClientes]; /*= {
     Cliente("Juan Perez", 12345, 30, "+51 934 567 899", "juanperez@email.com", "Calle Falsa 123"),
     Cliente("Maria Lopez", 23456, 25, "+58 967 234 563", "maria@email.com", "Avenida Siempre Viva 742"),
     Cliente("Carlos Garcia", 34567, 35, "+57 956 123 435", "carlos@email.com", "Calle Real 456"),
     Cliente("Ana Fernandez", 45678, 28, "+1 936 324 923", "ana@email.com", "Calle A 789")
-};
+};*/
 
-int cantClientes = 4;  // Inicializar el contador de clientes
+int cantClientes = 0;  // Inicializar el contador de clientes
+
+void Cliente::guardarEnArchivo() {
+	
+	ofstream archivo;
+	archivo.open("Clientes_Registrados.txt");
+
+    if (archivo.is_open()) {
+        for (int i = 0; i < cantClientes; i++) {
+            archivo << "Nombre: " << clientes[i].nombre << endl;
+            archivo << "DNI: " << clientes[i].DNI << endl;
+            archivo << "Edad: " << clientes[i].edad << endl;
+            archivo << "Telefono: " << clientes[i].telefono << endl;
+            archivo << "Correo: " << clientes[i].correo << endl;
+            archivo << "Direccion: " << clientes[i].direccion << endl;
+            archivo << "-----------------------" << endl;
+        }
+        archivo.close();
+        cout << "Clientes guardados en el archivo 'Clientes_Registrados.txt'." << endl;
+    } else {
+        cout << "Error al abrir el archivo." << endl;
+    }
+}
 
 void Cliente::agregarCliente() {
     if (cantClientes < maxClientes) {
         cout << "Agregar Cliente" << endl << endl;
+        string nombre, telefono, correo, direccion;
+        int edad, DNI;
 
         cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
         cout << "Edad: "; cin >> edad;
@@ -33,14 +61,19 @@ void Cliente::agregarCliente() {
         cout << "Telefono: "; getline(cin, telefono);
         cout << "Correo: "; getline(cin, correo);
         cout << "Direccion: "; getline(cin, direccion);
-        //clientes[cantClientes] = Cliente(nombre, DNI, edad, telefono, correo, direccion);
+
+        clientes[cantClientes] = Cliente(nombre, DNI, edad, telefono, correo, direccion);
         cantClientes++;
+
+        guardarEnArchivo(); // Guardar en archivo después de agregar
     } else {
         cout << "No puede agregar más clientes." << endl;
     }
 }
 
 void Cliente::editarCliente() {
+	ofstream archivo;
+	archivo.open("Clientes_Registrados.txt");
     int buscar;
     bool encontrado = false;
     cout << "Editar Cliente" << endl << endl;
@@ -50,6 +83,8 @@ void Cliente::editarCliente() {
     for (int i = 0; i < cantClientes; i++) {
         if (clientes[i].DNI == buscar) {
             encontrado = true;
+            string nombre, telefono, correo, direccion;
+            int edad;
 
             cout << "Ingrese los nuevos datos" << endl << endl;
             cout << "Nombre: "; cin.ignore(); getline(cin, clientes[i].nombre);
@@ -61,6 +96,7 @@ void Cliente::editarCliente() {
             cout << "Direccion: "; getline(cin, clientes[i].direccion);
 
             cout << "Cliente actualizado correctamente." << endl;
+            guardarEnArchivo(); // Guardar en archivo después de editar
             return;
         }
     }
@@ -68,6 +104,7 @@ void Cliente::editarCliente() {
     if (!encontrado) {
         cout << "Cliente no encontrado." << endl;
     }
+    archivo.close();
 }
 
 void Cliente::ordenarCliente() {
@@ -98,14 +135,15 @@ void Cliente::eliminarCliente() {
     cout << "Ingrese el DNI: "; cin >> clienteEliminar;
 
     bool encontrado = false;
-    for (int i=0; i<cantClientes; i++) {
+    for (int i = 0; i < cantClientes; i++) {
         if (clientes[i].DNI == clienteEliminar) {
-            for (int j=i; j<cantClientes-1; j++) {
-                clientes[j] = clientes[j+1]; // Desplazar todos los clientes hacia atrás
+            for (int j = i; j < cantClientes - 1; j++) {
+                clientes[j] = clientes[j + 1]; // Desplazar todos los clientes hacia atrás
             }
             --cantClientes;
             encontrado = true;
             cout << "Cliente eliminado." << endl;
+            guardarEnArchivo(); // Guardar en archivo después de eliminar
             break;
         }
     }
@@ -113,5 +151,15 @@ void Cliente::eliminarCliente() {
     if (!encontrado) {
         cout << "Cliente no encontrado." << endl;
     }
+}
+
+void Cliente::mostrarCliente() const {
+    cout << "Nombre: " << nombre << endl;
+    cout << "DNI: " << DNI << endl;
+    cout << "Edad: " << edad << endl;
+    cout << "Telefono: " << telefono << endl;
+    cout << "Correo: " << correo << endl;
+    cout << "Direccion: " << direccion << endl;
+    cout << "-----------------------" << endl;
 }
 

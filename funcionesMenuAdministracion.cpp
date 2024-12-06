@@ -35,7 +35,10 @@ void Administracion::gastosYGanancias() {
     cout << "Gastos y ganancias" << endl << endl;
     double sumaGanancias=0, sumaGastos=0, neto;
     for(int i=0; i<cantComidas; i++){
-    	finanzas[i]={0.0,0.0,0.0};
+    	finanzas[i].setGanancias(0.0);
+		finanzas[i].setPerdidas(0.0);
+		finanzas[i].setNeto(0.0);
+
     	finanzas[i].setGanancias(comida[i].getPrecio() * comida[i].getCantPedidos()); //ganancias de la "n" comida
     	sumaGanancias+=finanzas[i].getGanancias();
     	finanzas[i].setPerdidas(comida[i].getCosto() * comida[i].getCantPedidos());//gastos de la "n" comida
