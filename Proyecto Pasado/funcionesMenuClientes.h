@@ -14,6 +14,7 @@ class Personas {
     public:
         // Constructor por defecto
         Personas(string, int, int);
+
 };
 
 class Cliente : public Personas {
@@ -23,12 +24,13 @@ class Cliente : public Personas {
     public:
         Cliente() : Personas("", 0, 0), telefono(""), correo(""), direccion("") {}
         Cliente(string, int, int, string, string, string);
-
+		
+		void mostrarDatosClientes();
         void agregarCliente();
         void editarCliente();
         void ordenarCliente();
         void eliminarCliente();
-        void guardarEnArchivo(); // Método para guardar clientes en un archivo
+        void guardarEnArchivo(string, string, string, string, int, int); // Método para guardar clientes en un archivo
         void mostrarCliente() const; // Método para mostrar los detalles de un cliente
 };
 

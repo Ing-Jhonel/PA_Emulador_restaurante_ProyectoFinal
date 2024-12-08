@@ -82,7 +82,7 @@ void menuAdministracion(){
 	char opcion;
 	do{
 		cout << "Menu Administracion" << endl << endl
-			<< "A) Mostrar facturas" << endl
+			<< "A) Mostr<ar facturas" << endl
 			<< "B) Gastos y ganancias" << endl
 			<< "C) Ordenar mas vendido" << endl
 			<< "D) Estadisticas generales" << endl

@@ -1,7 +1,7 @@
 #include "funcionesMenuClientes.h"
 #include <fstream>
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
 
 Personas::Personas(string n, int dni, int e) {
@@ -10,12 +10,11 @@ Personas::Personas(string n, int dni, int e) {
     edad = e;
 }
 
-Cliente::Cliente(string n, int dni, int e, string t, string c, string d) : Personas(n, dni, e) {
+Cliente::Cliente(string n, int dni, int e, string t, string c, string d) : Personas(n,dni,e) {
     telefono = t;
     correo = c;
     direccion = d;
 }
-
 
 Cliente clientes[maxClientes]; /*= {
     Cliente("Juan Perez", 12345, 30, "+51 934 567 899", "juanperez@email.com", "Calle Falsa 123"),
@@ -26,21 +25,37 @@ Cliente clientes[maxClientes]; /*= {
 
 int cantClientes = 0;  // Inicializar el contador de clientes
 
-void Cliente::guardarEnArchivo() {
-	
+void Cliente::mostrarDatosClientes(){
 	ofstream archivo;
 	archivo.open("Clientes_Registrados.txt");
+	if(!archivo.fail()){
+		for(int i=0; i<cantClientes; i++){
+		cout << "Cliente " << i+1 << endl << endl
+			<< "Nombre: " << nombre << endl
+			<< "DNI: " << DNI << endl
+			<< "Edad: " << edad << endl
+			<< "Telefono: " << telefono << endl
+			<< "Correo: " << correo << endl
+			<< "Direccion: " << direccion << endl << endl;
+		}
+		archivo.close();
+	} else {
+		cout << "No se pudo abrir el archivo." << endl;
+	}
+}
+void Cliente::guardarEnArchivo(string n, string t, string c, string d, int e, int dni) {
+	
+	ofstream archivo;
+	archivo.open("Clientes_Registrados.txt", ios::app);
 
     if (archivo.is_open()) {
-        for (int i = 0; i < cantClientes; i++) {
-            archivo << "Nombre: " << clientes[i].nombre << endl;
-            archivo << "DNI: " << clientes[i].DNI << endl;
-            archivo << "Edad: " << clientes[i].edad << endl;
-            archivo << "Telefono: " << clientes[i].telefono << endl;
-            archivo << "Correo: " << clientes[i].correo << endl;
-            archivo << "Direccion: " << clientes[i].direccion << endl;
+            archivo << "Nombre: " << n << endl;
+            archivo << "DNI: " << dni << endl;
+            archivo << "Edad: " << e << endl;
+            archivo << "Telefono: " << t << endl;
+            archivo << "Correo: " << c << endl;
+            archivo << "Direccion: " << d << endl;
             archivo << "-----------------------" << endl;
-        }
         archivo.close();
         cout << "Clientes guardados en el archivo 'Clientes_Registrados.txt'." << endl;
     } else {
@@ -49,30 +64,35 @@ void Cliente::guardarEnArchivo() {
 }
 
 void Cliente::agregarCliente() {
-    if (cantClientes < maxClientes) {
-        cout << "Agregar Cliente" << endl << endl;
-        string nombre, telefono, correo, direccion;
-        int edad, DNI;
-
-        cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
-        cout << "Edad: "; cin >> edad;
-        cout << "DNI: "; cin >> DNI;
-        cin.ignore();
-        cout << "Telefono: "; getline(cin, telefono);
-        cout << "Correo: "; getline(cin, correo);
-        cout << "Direccion: "; getline(cin, direccion);
-
-        clientes[cantClientes] = Cliente(nombre, DNI, edad, telefono, correo, direccion);
-        cantClientes++;
-
-        guardarEnArchivo(); // Guardar en archivo después de agregar
-    } else {
-        cout << "No puede agregar más clientes." << endl;
-    }
+	ifstream archivo;
+	archivo.open("Clientes_Registrados.txt", ios::out);
+	if(archivo.is_open()){
+		if (cantClientes < maxClientes) {
+	        cout << "Agregar Cliente" << endl << endl;
+	       string nombre, telefono, correo, direccion; int edad, DNI;
+	
+	        cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
+	        cout << "Edad: "; cin >> edad;
+	        cout << "DNI: "; cin >> DNI;
+	        cin.ignore();
+	        cout << "Telefono: "; getline(cin, telefono);
+	        cout << "Correo: "; getline(cin, correo);
+	        cout << "Direccion: "; getline(cin, direccion);
+	
+	        clientes[cantClientes] = Cliente(nombre, DNI, edad, telefono, correo, direccion);
+	        cantClientes++;
+        	guardarEnArchivo(nombre, telefono, correo, direccion, edad, DNI); // Guardar en archivo después de agregar
+        	archivo.close();
+	    } else {
+	        cout << "No puede agregar más clientes." << endl;
+	    }
+	} else {
+		cout << "Error al abrir el archivo." << endl;
+	}
 }
 
 void Cliente::editarCliente() {
-	ofstream archivo;
+	ifstream archivo;
 	archivo.open("Clientes_Registrados.txt");
     int buscar;
     bool encontrado = false;
@@ -87,16 +107,16 @@ void Cliente::editarCliente() {
             int edad;
 
             cout << "Ingrese los nuevos datos" << endl << endl;
-            cout << "Nombre: "; cin.ignore(); getline(cin, clientes[i].nombre);
-            cout << "Edad: "; cin >> clientes[i].edad;
-            cout << "DNI: "; cin >> clientes[i].DNI;
+            cout << "Nombre: "; cin.ignore(); getline(archivo, clientes[i].nombre);
+            cout << "Edad: "; archivo >> clientes[i].edad;
+            cout << "DNI: "; archivo >> clientes[i].DNI;
             cin.ignore();
-            cout << "Telefono: "; getline(cin, clientes[i].telefono);
-            cout << "Correo: "; getline(cin, clientes[i].correo);
-            cout << "Direccion: "; getline(cin, clientes[i].direccion);
+            cout << "Telefono: "; getline(archivo, clientes[i].telefono);
+            cout << "Correo: "; getline(archivo, clientes[i].correo);
+            cout << "Direccion: "; getline(archivo, clientes[i].direccion);
 
             cout << "Cliente actualizado correctamente." << endl;
-            guardarEnArchivo(); // Guardar en archivo después de editar
+           // guardarEnArchivo(); // Guardar en archivo después de editar
             return;
         }
     }
@@ -143,7 +163,7 @@ void Cliente::eliminarCliente() {
             --cantClientes;
             encontrado = true;
             cout << "Cliente eliminado." << endl;
-            guardarEnArchivo(); // Guardar en archivo después de eliminar
+            //guardarEnArchivo(); // Guardar en archivo después de eliminar
             break;
         }
     }
