@@ -1,7 +1,0 @@
-Nombre: ererge
-DNI: 345
-Edad: 3453
-Telefono: ergr
-Correo: erg
-Direccion: erg
------------------------

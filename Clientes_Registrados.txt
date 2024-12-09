@@ -1,0 +1,36 @@
+
+Cliente 1
+
+Nombre: Jhonel
+Edad: 345
+DNI: 345
+Telefono: rt
+Correo: rth
+Direccion: rth
+
+Cliente 2
+
+Nombre: Anderson
+Edad: 45
+DNI: 456
+Telefono: grth
+Correo: muy
+Direccion: ikilo
+
+Cliente 3
+
+Nombre: Hola
+Edad: 234
+DNI: 234
+Telefono: erg
+Correo: erg
+Direccion: erg
+
+Cliente 4
+
+Nombre: Petronial
+Edad: 324
+DNI: 345
+Telefono: egfr
+Correo: erg
+Direccion: g
