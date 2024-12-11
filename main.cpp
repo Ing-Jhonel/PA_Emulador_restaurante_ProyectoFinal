@@ -9,7 +9,12 @@ int main(){
 	registroCliente.leerDatosClienteEnArchivoBase(clientes, cantClientes);
 	Carta registroComidas;
 	registroComidas.leerDatosComidasEnArchivoBase(comidas, cantComidas);
-
+	
+	/*cout << endl << endl << cantComidas << endl << endl;
+	for(int i=0; i<cantComidas; i++){
+		cout << comidas[i].getNombre() << endl;
+	}
+	cout << endl;*/
 	int opcion;
 	do{
 		cout << "Menu Principal" << endl << endl
@@ -35,11 +40,18 @@ int main(){
 					break;
 				case 5:
 					cout << "Saliendo del programa." << endl;
+					break;
 				default:
 					cout << "Indique una opcion valida." << endl;
 					break;
 			}
 	} while (opcion != 5);
+	/*cout << endl << endl << cantComidas << endl << endl;
+	for(int i=0; i<cantComidas; i++){
+		cout << comidas[i].getNombre() << endl;
+	}
+	cout << endl;*/
+	
 	//registroCliente.guardarDatosClienteEnArchivoFinal();
 	return 0;
 }

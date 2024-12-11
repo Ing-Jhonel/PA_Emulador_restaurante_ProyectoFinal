@@ -10,8 +10,9 @@ class Comida{
 		string nombre, ingredientes;
 		double precio, costo;
 		int unidades;
+		double ganancia, perdida;
 	public:
-		Comida(string, string, double, double, int);
+		Comida(string, string, double, double, int, double, double);
 		Comida() : nombre(""), ingredientes(""), precio(0), costo(0), unidades(0) {}
 		
 		string getNombre() const { return nombre;}
@@ -22,15 +23,13 @@ class Comida{
 };
 
 class Carta{
-	public:
-		Comida comidas[maxComidas];
+
 	public:
 		Carta();
 		
-		void leerDatosComidasEnArchivoBase(Comida, int&);
+		void leerDatosComidasEnArchivoBase(Comida*, int&);
 		void guardarDatosCartaEnArchivo(int);
 		void pedirDatosCartaParaArchivo(int);
-		Comida* getComidas() { return comidas; }
 		
 		void agregarComida();
 		void editarComida();
@@ -39,4 +38,11 @@ class Carta{
 		void mostrarCarta();
 };
 
+class Factura{
+	protected:
+		string nombre;
+		int cantidad;
+		double totalPagar;
+};
+extern Comida comidas[maxComidas];
 #endif

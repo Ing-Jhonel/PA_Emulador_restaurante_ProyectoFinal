@@ -61,22 +61,23 @@ void menuCarta(){
 	do{
 		cout << "Menu Carta" << endl << endl
 			<< "A) Agregar comida" << endl
-			<< "B) Eliminar comida" << endl
-			<< "C) Editar carta" << endl
+			<< "B) Editar comida" << endl
+			<< "C) Eliminar carta" << endl
 			<< "D) Ordenar comida" << endl
 			<< "E) Ver carta" << endl
 			<< "F) Volver menu principal" << endl << endl
 			<< "= "; cin >> opcion;
 			
+			cout << endl << endl;
 			switch(opcion){
 				case 'A':
 					cartas.agregarComida();
 					break;
 				case 'B':
-					//comida[cantComidas].editarCarta();
+					cartas.editarComida();
 					break;
 				case 'C':
-					//comida[cantComidas].eliminarComida();
+					cartas.eliminarComida();
 					break;
 				case 'D':
 					//comida[cantComidas].ordenarComida();
@@ -91,6 +92,7 @@ void menuCarta(){
 					cout << "Indique una opcion valida." << endl;
 					break;
 			}
+			cout << endl << endl;
 	} while(opcion!='F');
 }
 /*

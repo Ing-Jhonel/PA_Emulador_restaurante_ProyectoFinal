@@ -117,9 +117,8 @@ void Cliente::agregarClientes(){
 }
 void Cliente::editarClientes(){
 	
-	cout << endl << endl;
-	ifstream archivo;
-	archivo.open("Clientes_Registrados.txt");
+	/*ifstream archivo;
+	archivo.open("Clientes_Registrados.txt");*/
 	
 	int buscarDni;
 	cout << "Editando Cliente" << endl << endl
@@ -130,7 +129,7 @@ void Cliente::editarClientes(){
 			pedirDatosClienteParaArchivo(i);
 			guardarDatosClienteEnArchivo(1);
 			cout << "Cliente editado exitosamente." << endl << endl;
-			archivo.close();
+			//archivo.close();
 			break;
 		}
 	}

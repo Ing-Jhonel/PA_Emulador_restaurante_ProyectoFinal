@@ -1,23 +1,26 @@
 #include "funcionesMenuCarta.h"
+#include "funcionesMenuClientes.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
 int cantComidas=0;
+Comida comidas[maxComidas];
 
 Carta::Carta(){
-	cantComidas=0;
 }
 
-Comida::Comida(string n, string i, double p, double c, int u){
+Comida::Comida(string n, string i, double p, double c, int u, double gan, double per){
 	nombre=n;
 	ingredientes=i;
 	precio=p;
 	costo=c;
 	unidades=u;
+	ganancia=gan;
+	perdida=per;
 }
 
-void Carta::leerDatosComidasEnArchivoBase(Comida arr[], int &cantComidas) {
+void Carta::leerDatosComidasEnArchivoBase(Comida arr[], int& cantComidas) { //
     ifstream archivo;
     archivo.open("infoComidas.txt", ios::app);
     string linea, nombre, ingredientes;
@@ -34,18 +37,25 @@ void Carta::leerDatosComidasEnArchivoBase(Comida arr[], int &cantComidas) {
 			
 			archivo.ignore();
 			
-			arr[cantComidas]=Comida(nombre, ingredientes, precio, costo, unidades);
+			comidas[cantComidas]=Comida(nombre, ingredientes, precio, costo, unidades);
 			cantComidas++;
 		}
 		archivo.close();
 	} else {
 		
 	}
+	/*
+	cout << endl << endl;
+	for(int i=0; i<cantComidas; i++){
+		cout << comidas[i].getNombre() << endl;
+	}
+	cout << endl;
+	*/
 	
 }
-void Carta::pedirDatosCartaParaArchivo(int posicion){
-	ofstream archivo;
-	archivo.open("infoComidas.txt", ios::app);
+void Carta::pedirDatosCartaParaArchivo(int posicion){//
+	/*ofstream archivo;
+	archivo.open("infoComidas.txt", ios::app);*/
 	string nombre, ingredientes; double costo, precio; int unidades;
 	cin.ignore();
 	cout << "Nombre: "; getline(cin, nombre);
@@ -54,9 +64,8 @@ void Carta::pedirDatosCartaParaArchivo(int posicion){
 	cout << "Precio: "; cin >> precio;
 	cout << "Unidades: "; cin >> unidades;
 	comidas[posicion]=Comida(nombre, ingredientes, costo, precio, unidades);
-	archivo.close();
+	//archivo.close();
 }
-
 void Carta::guardarDatosCartaEnArchivo(int k){ // son dos funciones de guardar datos; k=0 si es agregar; k= si es alterar el archivo
 	ofstream archivo;
 	archivo.open("infoComidas.txt", ios::trunc); //guarda la info en el archivo base, que el usuario no debe ver, puro info para datos
@@ -103,6 +112,18 @@ void Carta::guardarDatosCartaEnArchivo(int k){ // son dos funciones de guardar d
 	archivo.close();
 }
 
+void mostrarComidas(){
+	cout << "Comidas Registradas" << endl << endl;
+	for(int i=0; i<cantComidas; i++){
+		cout << "COMIDA " << i+1 << endl << endl
+			<< "Nombre: " << comidas[i].getNombre() << endl
+			<< "Ingredientes: " << comidas[i].getIngredientes() << endl
+			<< "Precio: " << comidas[i].getPrecio() << endl
+			<< "Costo: " << comidas[i].getCosto() << endl
+			<< "Unidades: " << comidas[i].getUnidades() << endl << endl;
+	}
+}
+
 void Carta::agregarComida(){
 	ofstream archivo;
 	archivo.open("infoClientes.txt", ios::app);
@@ -120,4 +141,84 @@ void Carta::agregarComida(){
 	} else {
 		cout << "Error al abrir el archivo." << endl;
 	}
+}
+void Carta::editarComida(){
+	
+	int num; bool seguir;
+	cout << "Editando Comida" << endl << endl
+		<< "Elija la comida" << endl << endl;
+	mostrarComidas();
+	do{
+		cout << "Indique el numero: "; cin >> num;
+		if( 0<num && num<=cantComidas){
+			seguir=true;
+			pedirDatosCartaParaArchivo(num-1);
+			guardarDatosCartaEnArchivo(1);
+		} else {
+			seguir=false;
+			cout << "Numero de comida no encontrado. Intente de nuevo." << endl;
+		}
+	} while ( !seguir);
+	cout << "Comida editara exitosamente.";
+}
+void Carta::eliminarComida(){
+	
+	int num; bool seguir;
+	cout << "Eliminando Comida" << endl << endl
+		<< "Elija la comida" << endl << endl;
+	mostrarComidas();
+	do{
+		cout << "Indique el numero: "; cin >> num;
+		if( 0<num && num<=cantComidas){
+			seguir=true;
+			for (int i = num-1; i<cantComidas-1; i++) {
+		        comidas[i] = comidas[i+1];
+		    }
+		    cantComidas--;
+		    guardarDatosCartaEnArchivo(1);
+		} else {
+			seguir=false;
+			cout << "Numero de comida no encontrado. Intente de nuevo." << endl;
+		}
+	} while (!seguir);
+	cout << "Comida eliminada exitosamente.";
+}
+/*
+bool validarEntradasNumericas(int limiteSuperior, int limiteInferior, int dato){
+	if(limiteInferior<dato && dato<=limiteSuperior){
+		return true;
+	}
+	return false;
+}*/
+void Carta::ordenarComida(){
+	int num, cant; string nombre;
+	cout << "Ordenando Comida..." << endl << endl
+		<< "Elija la comida a pedir" << endl << endl;
+	mostrarComidas();
+	do{
+		seguir=false;
+		cout << "Indique el numero: "; cin >> num; //indice-1 de la comida
+		if( 0<num && num<=cantComidas){
+			seguir=true;
+			do{
+				seguir=false;
+				cout << "Indique la cantidad: "; cin >> cant;
+				if(0<cant && cant<=comidas[i].getUnidades()){
+					seguir=true;
+					do{
+						cout << "Indique a que nombre: "; cin >> nombre;
+						for(int i=0; i<cantClientes; i++){
+							if(clientes[i].nombre == nombre){
+								cout << "G E N E R A N D O   F A C T U R A" << endl << endl;
+							}
+						}
+					}
+				} else {
+					cout << "Cantidad no disponible. Intente de nuevo." << endl << endl;
+				}
+			}
+		} else {
+			cout << "Numero de comida no encontrado. Intente de nuevo." << endl << endl;
+		}
+	} while (!seguir);
 }
