@@ -40,7 +40,7 @@ void menuClientes(){
 					clientes[cantClientes].editarClientes();
 					break;
 				case 'C':
-					//clientes[cantClientes].eliminarClientes();
+					clientes[cantClientes].eliminarClientes();
 					break;
 				case 'D':
 					clientes[cantClientes].mostrarOrdenadosClientes();

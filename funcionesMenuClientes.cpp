@@ -2,7 +2,44 @@
 #include "menus.h"
 #include <fstream>
 #include <iostream>
-
+/*void Cliente::guardarDatosClienteEnArchivoBase(){ //guarda la info en el archivo base, que el usuario no debe ver, puro info para datos
+	ofstream archivo;
+	archivo.open("infoClientes.txt", ios::trunc);
+	if (archivo.is_open()) {
+		for(int i=0; i<=cantClientes; i++){
+			archivo << i << endl
+        			<< clientes[i].nombre << endl
+        			<< clientes[i].edad << endl
+        			<< clientes[i].DNI << endl
+        			<< clientes[i].telefono << endl
+        			<< clientes[i].correo << endl
+        			<< clientes[i].direccion << endl;
+		}	
+        archivo.close();
+    } else {
+        cout << "Error al abrir el archivo." << endl;
+    }
+}
+void Cliente::guardarDatosClienteEnArchivoFinal() { //guarda la info en el archivo que el usuario vera
+	ofstream archivo;
+	archivo.open("Clientes_Registrados.txt", ios::trunc);
+	archivo << "*****************************************************" << endl
+		<< "        C L I E N T E S   R E G I S T R A D O S		 " << endl
+		<< "*****************************************************" << endl << endl;
+	//int i=cantClientes;
+	for(int i=0; i<=cantClientes;i++){
+		archivo << endl << "CLIENTE " << i+1 << endl << endl
+			<< "Nombre: " << clientes[i].nombre << endl
+			<< "Edad: " << clientes[i].edad << endl
+			<< "DNI: " << clientes[i].DNI << endl
+			<< "Telefono: " << clientes[i].telefono << endl
+			<< "Correo: " << clientes[i].correo << endl
+			<< "Direccion: " << clientes[i].direccion << endl
+			<< "-------------------------------------------" << endl;
+	}
+    		
+	archivo.close();
+}*/
 using namespace std;
 
 int cantClientes=0;
@@ -13,19 +50,19 @@ Cliente::Cliente(string n, string t, string c, int e, int dni, string d): Person
 }
 
 void Cliente::leerDatosClienteEnArchivoBase(Cliente arr[], int &cantClientes) {
-    ifstream archivo;
+    
+	ifstream archivo;
     archivo.open("infoClientes.txt");
 	string linea;
+	cantClientes=0;
 	string nombre, telefono, correo, direccion;
 	int edad, dni;
-	cantClientes=0;
     if (archivo.is_open()) {
         while(getline(archivo, linea)){
         	
         	getline(archivo, nombre);
         	
-            archivo >> edad;
-            archivo >> dni;
+            archivo >> edad >> dni;
             
             archivo.ignore();
             
@@ -33,7 +70,7 @@ void Cliente::leerDatosClienteEnArchivoBase(Cliente arr[], int &cantClientes) {
             getline(archivo, correo);
             getline(archivo, direccion);
             
-            arr[cantClientes] = Cliente(nombre, telefono, correo, edad, dni, direccion);
+            arr[cantClientes] = Cliente(nombre, telefono, correo, edad, dni, direccion); //inicializa en 0
             cantClientes++;
 		}
         archivo.close();
@@ -41,55 +78,61 @@ void Cliente::leerDatosClienteEnArchivoBase(Cliente arr[], int &cantClientes) {
         //cout << "Error al abrir el archivo." << endl;
     }
 }
-void Cliente::pedirDatosClienteParaArchivo(){
+void Cliente::pedirDatosClienteParaArchivo(int posicion){ //funcion que pide datos de un arreglo para meterlos en una posicion especifica
 	ofstream archivo;
 	archivo.open("infoClientes.txt", ios::app);
-	
+	string nombre, telefono, correo, direccion;
+	int edad, dni;
 	cin.ignore();
-	cout << "Nombre: "; getline(cin, clientes[cantClientes].nombre);
-	cout << "Edad: "; cin >> clientes[cantClientes].edad;
-	cout << "DNI: "; cin >> clientes[cantClientes].DNI;
+	cout << "Nombre: "; getline(cin, nombre);
+	cout << "Edad: "; cin >> edad;
+	cout << "DNI: "; cin >> dni;
 	cin.ignore();
-	cout << "Telofono: "; getline(cin, clientes[cantClientes].telefono);
-	cout << "Correo: "; getline(cin, clientes[cantClientes].correo);
-	cout << "Direccion: "; getline(cin, clientes[cantClientes].direccion);
-	
+	cout << "Telofono: "; getline(cin, telefono);
+	cout << "Correo: "; getline(cin, correo);
+	cout << "Direccion: "; getline(cin, direccion);
+	clientes[posicion]=Cliente(nombre, telefono, correo, edad, dni, direccion);
 	archivo.close();
 }
-void Cliente::guardarDatosClienteEnArchivoBase(){
+void Cliente::guardarDatosClienteEnArchivo(int k){ // son dos funciones de guardar datos; k=0 si es agregar; k= si es alterar el archivo
 	ofstream archivo;
-	archivo.open("infoClientes.txt", ios::app);
+	archivo.open("infoClientes.txt", ios::trunc); //guarda la info en el archivo base, que el usuario no debe ver, puro info para datos
 	if (archivo.is_open()) {
-        	archivo << cantClientes+1 << endl
-        			<< clientes[cantClientes].nombre << endl
-        			<< clientes[cantClientes].edad << endl
-        			<< clientes[cantClientes].DNI << endl
-        			<< clientes[cantClientes].telefono << endl
-        			<< clientes[cantClientes].correo << endl
-        			<< clientes[cantClientes].direccion << endl;
-        archivo.close();
+		for(int i=0; i<=cantClientes-k; i++){
+			archivo << i << endl
+        			<< clientes[i].nombre << endl
+        			<< clientes[i].edad << endl
+        			<< clientes[i].DNI << endl
+        			<< clientes[i].telefono << endl
+        			<< clientes[i].correo << endl
+        			<< clientes[i].direccion << endl;
+		}	
     } else {
         cout << "Error al abrir el archivo." << endl;
     }
-}
-void Cliente::guardarDatosClienteEnArchivoFinal() {
-	ofstream archivo;
-	archivo.open("Clientes_Registrados.txt", ios::app);
-	int i=cantClientes;
-	//for(int i=0; i<cantClientes;i++){
-		archivo << endl << "Cliente " << i+1 << endl << endl
+	archivo.close();
+	
+	archivo.open("Clientes_Registrados.txt", ios::trunc); //guarda la info en el archivo que el usuario vera
+	archivo << "*****************************************************" << endl
+		<< "        C L I E N T E S   R E G I S T R A D O S		 " << endl
+		<< "*****************************************************" << endl << endl;
+	//int i=cantClientes;
+	for(int i=0; i<=cantClientes-k; i++){
+		archivo << endl << "CLIENTE " << i+1 << endl << endl
 			<< "Nombre: " << clientes[i].nombre << endl
 			<< "Edad: " << clientes[i].edad << endl
 			<< "DNI: " << clientes[i].DNI << endl
 			<< "Telefono: " << clientes[i].telefono << endl
 			<< "Correo: " << clientes[i].correo << endl
-			<< "Direccion: " << clientes[i].direccion << endl;
-	//}
+			<< "Direccion: " << clientes[i].direccion << endl
+			<< "-------------------------------------------" << endl;
+	}
     		
 	archivo.close();
 }
 
 void Cliente::agregarClientes(){
+	
 	ofstream archivo;
 	archivo.open("infoClientes.txt", ios::app);
 	if(archivo.is_open()){
@@ -97,9 +140,8 @@ void Cliente::agregarClientes(){
 			//cantClientes=retornarContador();
 			cout << "Agregando Cliente" << endl << endl;
 			
-			pedirDatosClienteParaArchivo();
-			guardarDatosClienteEnArchivoBase();
-			guardarDatosClienteEnArchivoFinal();
+			pedirDatosClienteParaArchivo(cantClientes);
+			guardarDatosClienteEnArchivo(0);
 			
 			archivo.close();
 			cantClientes++;
@@ -111,7 +153,6 @@ void Cliente::agregarClientes(){
 		cout << "Error al abrir el archivo." << endl;
 	}
 }
-
 void Cliente::editarClientes(){
 	
 	cout << endl << endl;
@@ -124,9 +165,8 @@ void Cliente::editarClientes(){
 	for(int i=0; i<cantClientes; i++){
 		if(clientes[i].DNI == buscarDni){
 			cout << "Cliente encontrado. Indique sus datos nuevos." << endl << endl;
-			pedirDatosClienteParaArchivo();
-			guardarDatosClienteEnArchivoBase();
-			guardarDatosClienteEnArchivoFinal();
+			pedirDatosClienteParaArchivo(i);
+			guardarDatosClienteEnArchivo(1);
 			cout << "Cliente editado exitosamente." << endl << endl;
 			archivo.close();
 			break;
@@ -134,11 +174,35 @@ void Cliente::editarClientes(){
 	}
 	cout << "Cliente no encontrado." << endl << endl;
 }
-
 void Cliente::eliminarClientes(){
-	
-}
+    int buscarDni;
+    cout << "Eliminando Cliente" << endl
+         << "Indique DNI: ";
+    cin >> buscarDni;
 
+    // Buscar el cliente a eliminar
+    int indiceEliminar = -1;
+    for (int i = 0; i < cantClientes; ++i) {
+        if (clientes[i].DNI == buscarDni) {
+            indiceEliminar = i;
+            break;
+        }
+    }
+
+    if (indiceEliminar == -1) {
+        cout << "Cliente no encontrado." << endl;
+        return;
+    }
+
+    cout << "Cliente encontrado. Eliminacion en proceso..." << endl;
+
+    // Desplazar los elementos posteriores al cliente eliminado
+    for (int i = indiceEliminar; i < cantClientes - 1; ++i) {
+        clientes[i] = clientes[i + 1];
+    }
+    cantClientes--;
+    guardarDatosClienteEnArchivo(1);
+}
 void Cliente::mostrarOrdenadosClientes() {
     if (cantClientes == 0) {
         cout << "No hay clientes registrados para mostrar." << endl;

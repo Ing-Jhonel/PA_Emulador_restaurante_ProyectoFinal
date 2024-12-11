@@ -1,36 +1,34 @@
+*****************************************************
+        C L I E N T E S   R E G I S T R A D O S		 
+*****************************************************
 
-Cliente 1
+
+CLIENTE 1
 
 Nombre: Jhonel
-Edad: 345
-DNI: 345
-Telefono: rt
-Correo: rth
-Direccion: rth
+Edad: 1
+DNI: 1
+Telefono: 1
+Correo: 1
+Direccion: 1
+-------------------------------------------
 
-Cliente 2
+CLIENTE 2
 
 Nombre: Anderson
-Edad: 45
-DNI: 456
-Telefono: grth
-Correo: muy
-Direccion: ikilo
+Edad: 3
+DNI: 3
+Telefono: 3
+Correo: 3
+Direccion: 3
+-------------------------------------------
 
-Cliente 3
+CLIENTE 3
 
-Nombre: Hola
-Edad: 234
-DNI: 234
-Telefono: erg
-Correo: erg
-Direccion: erg
-
-Cliente 4
-
-Nombre: Petronial
-Edad: 324
-DNI: 345
-Telefono: egfr
-Correo: erg
-Direccion: g
+Nombre: Joel
+Edad: 8
+DNI: 8
+Telefono: 8
+Correo: 8
+Direccion: 8
+-------------------------------------------
