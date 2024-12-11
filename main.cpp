@@ -1,11 +1,15 @@
 #include <iostream>
 #include "menus.h"
 #include "funcionesMenuClientes.h"
+#include "funcionesMenuCarta.h"
 using namespace std;
 
 int main(){
 	Cliente registroCliente;
 	registroCliente.leerDatosClienteEnArchivoBase(clientes, cantClientes);
+	Carta registroComidas;
+	registroComidas.leerDatosComidasEnArchivoBase(comidas, cantComidas);
+
 	int opcion;
 	do{
 		cout << "Menu Principal" << endl << endl
@@ -21,7 +25,7 @@ int main(){
 					menuClientes();
 					break;
 				case 2:
-					//menuCarta();
+					menuCarta();
 					break;
 				case 3:
 					//menuFinanzas();

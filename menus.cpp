@@ -1,7 +1,7 @@
 #include <iostream>
 #include "menus.h"
 #include "funcionesMenuClientes.h"
-//#include "funcionesMenuCarta.h"
+#include "funcionesMenuCarta.h"
 //#include "funcionesMenuAdministracion.h"
 using namespace std;
 
@@ -54,9 +54,10 @@ void menuClientes(){
 			}
 	} while(opcion!='E');
 }
-/*
+
 void menuCarta(){
 	char opcion;
+	Carta cartas;
 	do{
 		cout << "Menu Carta" << endl << endl
 			<< "A) Agregar comida" << endl
@@ -69,19 +70,19 @@ void menuCarta(){
 			
 			switch(opcion){
 				case 'A':
-					comida[cantComidas].agregarComida();
+					cartas.agregarComida();
 					break;
 				case 'B':
-					comida[cantComidas].editarCarta();
+					//comida[cantComidas].editarCarta();
 					break;
 				case 'C':
-					comida[cantComidas].eliminarComida();
+					//comida[cantComidas].eliminarComida();
 					break;
 				case 'D':
-					comida[cantComidas].ordenarComida();
+					//comida[cantComidas].ordenarComida();
 					break;
 				case 'E':
-					comida[cantComidas].verCarta();
+					//comida[cantComidas].verCarta();
 					break;
 				case 'F':
 					cout << "Volviendo al menu principal..." << endl;
@@ -92,6 +93,7 @@ void menuCarta(){
 			}
 	} while(opcion!='F');
 }
+/*
 void menuFinanzas(){
 	char opcion;
 	do{

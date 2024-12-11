@@ -2,44 +2,6 @@
 #include "menus.h"
 #include <fstream>
 #include <iostream>
-/*void Cliente::guardarDatosClienteEnArchivoBase(){ //guarda la info en el archivo base, que el usuario no debe ver, puro info para datos
-	ofstream archivo;
-	archivo.open("infoClientes.txt", ios::trunc);
-	if (archivo.is_open()) {
-		for(int i=0; i<=cantClientes; i++){
-			archivo << i << endl
-        			<< clientes[i].nombre << endl
-        			<< clientes[i].edad << endl
-        			<< clientes[i].DNI << endl
-        			<< clientes[i].telefono << endl
-        			<< clientes[i].correo << endl
-        			<< clientes[i].direccion << endl;
-		}	
-        archivo.close();
-    } else {
-        cout << "Error al abrir el archivo." << endl;
-    }
-}
-void Cliente::guardarDatosClienteEnArchivoFinal() { //guarda la info en el archivo que el usuario vera
-	ofstream archivo;
-	archivo.open("Clientes_Registrados.txt", ios::trunc);
-	archivo << "*****************************************************" << endl
-		<< "        C L I E N T E S   R E G I S T R A D O S		 " << endl
-		<< "*****************************************************" << endl << endl;
-	//int i=cantClientes;
-	for(int i=0; i<=cantClientes;i++){
-		archivo << endl << "CLIENTE " << i+1 << endl << endl
-			<< "Nombre: " << clientes[i].nombre << endl
-			<< "Edad: " << clientes[i].edad << endl
-			<< "DNI: " << clientes[i].DNI << endl
-			<< "Telefono: " << clientes[i].telefono << endl
-			<< "Correo: " << clientes[i].correo << endl
-			<< "Direccion: " << clientes[i].direccion << endl
-			<< "-------------------------------------------" << endl;
-	}
-    		
-	archivo.close();
-}*/
 using namespace std;
 
 int cantClientes=0;

@@ -17,10 +17,9 @@ class Cliente: public Personas{
 		void mostrarDatosClientes();
 	
 		void leerDatosClienteEnArchivoBase(Cliente*, int&);
-		//void guardarDatosClienteEnArchivoFinal();
-		//void guardarDatosClienteEnArchivoBase();
 		void guardarDatosClienteEnArchivo(int);
 		void pedirDatosClienteParaArchivo(int);
+		
 		void agregarClientes();
 		void editarClientes();
 		void eliminarClientes();

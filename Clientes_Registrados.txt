@@ -6,29 +6,89 @@
 CLIENTE 1
 
 Nombre: Jhonel
-Edad: 1
+Edad: 23
+DNI: 34
+Telefono: 345
+Correo: 45
+Direccion: 4
+-------------------------------------------
+
+CLIENTE 2
+
+Nombre: 
+Edad: 0
+DNI: 0
+Telefono: 
+Correo: 
+Direccion: 
+-------------------------------------------
+
+CLIENTE 3
+
+Nombre: Ejemplo
+Edad: 0
+DNI: 99
+Telefono: 99
+Correo: 99
+Direccion: 99
+-------------------------------------------
+
+CLIENTE 4
+
+Nombre: nUEVOX2
+Edad: 12
 DNI: 1
 Telefono: 1
 Correo: 1
 Direccion: 1
 -------------------------------------------
 
-CLIENTE 2
+CLIENTE 5
 
-Nombre: Anderson
-Edad: 3
-DNI: 3
-Telefono: 3
-Correo: 3
-Direccion: 3
+Nombre: 
+Edad: 0
+DNI: 0
+Telefono: 
+Correo: 
+Direccion: 
 -------------------------------------------
 
-CLIENTE 3
+CLIENTE 6
 
-Nombre: Joel
-Edad: 8
-DNI: 8
-Telefono: 8
-Correo: 8
-Direccion: 8
+Nombre: 
+Edad: 0
+DNI: 0
+Telefono: 
+Correo: 
+Direccion: 
+-------------------------------------------
+
+CLIENTE 7
+
+Nombre: Huevos
+Edad: 231
+DNI: 123
+Telefono: 123
+Correo: 123
+Direccion: 123
+-------------------------------------------
+
+CLIENTE 8
+
+Nombre: KK
+Edad: 5
+DNI: 5
+Telefono: 5
+Correo: 5
+Direccion: 5
+-------------------------------------------
+
+CLIENTE 9
+
+Nombre: 
+Edad: 0
+DNI: 0
+Telefono: 
+Correo: 
+Direccion: 
 -------------------------------------------
