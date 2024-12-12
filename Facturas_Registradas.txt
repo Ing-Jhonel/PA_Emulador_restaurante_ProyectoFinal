@@ -1,0 +1,49 @@
+*****************************************************
+        F A C T U R A S   R E G I S T R A D A S		 
+*****************************************************
+
+FACTURA 1
+
+A nombre de: Jhonel
+Comida: Hola
+Cantidad: 10
+
+ - Total a pagar --> S/. 120
+_______________________________________
+
+FACTURA 2
+
+A nombre de: Jhonel
+Comida: Nuevo
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 3
+
+A nombre de: Jhonel
+Comida: Jhonel
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 4
+
+A nombre de: Jhonel
+Comida: Jhonel
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 5
+
+A nombre de: Jhonel
+Comida: Nuevo
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+

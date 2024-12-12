@@ -41,12 +41,12 @@ nUEVOX2
 
 
 6
-Huevos
-231
-123
-123
-123
-123
+GGGGGGGGGGGGGGGGG
+5
+5
+5
+5
+5
 7
 3
 3
@@ -68,3 +68,10 @@ Huevos
 4
 4
 4
+10
+JJJJJ
+33
+33
+3
+
+3

@@ -2,7 +2,7 @@
 #include "menus.h"
 #include "funcionesMenuClientes.h"
 #include "funcionesMenuCarta.h"
-//#include "funcionesMenuAdministracion.h"
+#include "funcionesMenuFinanzas.h"
 using namespace std;
 
 Personas::Personas(string n, string t, string c, int e, int dni){
@@ -95,8 +95,9 @@ void menuCarta(){
 			cout << endl << endl;
 	} while(opcion!='F');
 }
-/*
+
 void menuFinanzas(){
+	Finanza finanzas;
 	char opcion;
 	do{
 		cout << "Menu Finanzas" << endl << endl
@@ -107,18 +108,19 @@ void menuFinanzas(){
 			<< "E) Volver menu principal" << endl << endl
 			<< "= "; cin >> opcion;
 			
+			cout << endl << endl;
 			switch(opcion){
 				case 'A':
-					Administracion::gastosYGanancias();
+					finanzas.mostrarGastosYGanancias();
 					break;
 				case 'B':
-					Administracion::ordenarMasVendido();
+					finanzas.ordenarMasVendido();
 					break;
 				case 'C':
-					Administracion::estadisticasGenerales();
+					finanzas.mostrarEstadisticasGenerales();
 					break;
 				case 'D':
-					Administracion::mostrarFacturas();
+					finanzas.mostrarFacturas();
 					break;
 				case 'E':
 					cout << "Volviendo al menu principal..." << endl;
@@ -127,8 +129,10 @@ void menuFinanzas(){
 					cout << "Indique una opcion valida." << endl;
 					break;
 			}
+			cout << endl << endl;
 	} while(opcion!='E');
 }
+
 void menuAdministracion(){
 	char opcion;
 	do{
@@ -174,4 +178,3 @@ void menuAdministracion(){
 	} while(opcion!='G');
 }
 
-*/

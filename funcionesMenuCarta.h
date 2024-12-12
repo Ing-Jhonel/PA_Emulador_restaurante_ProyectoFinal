@@ -33,7 +33,7 @@ class Comida{
 		void setPrecio(double p) { precio = p; }
 		void setCosto(double c) { costo = c; }
 		void setUnidades(int u) { unidades = u; }
-		void setUnidadesVendidas(int u) { unidades = u; }
+		void setUnidadesVendidas(int uV) { unidadesVendidas = uV; }
 		void setGanancia(double g) { ganancia = g; }
 		void setPerdida(double p) { perdida = p; }
 		void setNeto(double net) { neto = net; }
@@ -66,13 +66,19 @@ class Factura{
 	protected:
 		string nombreCliente, nombreComida;
 		int cantidad;
-		double totalPagar;
+		double totalPagar, totalInvertido;
 	public:
-		Factura(string, string, int, double);
-		Factura() : nombreCliente(""), nombreComida(""), cantidad(0), totalPagar(0.0) {}
+		Factura(string, string, int, double, double);
+		Factura() : nombreCliente(""), nombreComida(""), cantidad(0), totalPagar(0.0), totalInvertido(0.0) {}
 		
-		void leerDatosFaturaEnArchivoBase(Factura*, int&);
+		void leerDatosFacturaEnArchivoBase(Factura*, int&);
 		void guardarDatosFacturaEnArchivo(int);
+		
+		string getNombreCliente() const { return nombreCliente; }
+		string getNombreComida() const { return nombreComida; }
+		int getCantidad() const { return cantidad;}
+		double getTotalPagar() const { return totalPagar;}
+		double getTotalInvertido() const { return totalInvertido;}
 };
 
 extern Comida comidas[maxComidas];

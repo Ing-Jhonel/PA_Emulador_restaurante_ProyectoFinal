@@ -65,12 +65,12 @@ Direccion:
 
 CLIENTE 7
 
-Nombre: Huevos
-Edad: 231
-DNI: 123
-Telefono: 123
-Correo: 123
-Direccion: 123
+Nombre: GGGGGGGGGGGGGGGGG
+Edad: 5
+DNI: 5
+Telefono: 5
+Correo: 5
+Direccion: 5
 -------------------------------------------
 
 CLIENTE 8
@@ -101,4 +101,14 @@ DNI: 4
 Telefono: 4
 Correo: 4
 Direccion: 4
+-------------------------------------------
+
+CLIENTE 11
+
+Nombre: JJJJJ
+Edad: 33
+DNI: 33
+Telefono: 3
+Correo: 
+Direccion: 3
 -------------------------------------------

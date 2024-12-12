@@ -1,5 +1,6 @@
 #include "funcionesMenuCarta.h"
 #include "funcionesMenuClientes.h"
+#include "funcionesMenuFinanzas.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -9,11 +10,12 @@ int cantFacturas=0;
 Factura facturas[maxFacturas];
 Comida comidas[maxComidas];
 
-Factura::Factura(string nCli, string nCo, int c, double tP){
+Factura::Factura(string nCli, string nCo, int c, double tP, double tI){
 	nombreCliente=nCli;
 	nombreComida=nCo;
 	cantidad=c;
 	totalPagar=tP;
+	totalInvertido=tI;
 }
 Carta::Carta(){
 }
@@ -30,16 +32,16 @@ Comida::Comida(string n, string i, double p, double c, int u, int uv, double gan
 	neto=net;
 }
 
-void Carta::leerDatosComidasEnArchivoBase(Comida arr[], int& cantComidas) { //
+void Carta::leerDatosComidasEnArchivoBase(Comida comidas[], int& cantComidas) { //
     ifstream archivo;
-    archivo.open("infoComidas.txt", ios::app);
+    archivo.open("infoComidas.txt");
+    cantComidas=0;
     string linea, nombre, ingredientes;
 	double precio, costo;
 	int unidades, unidadesVendidas;
 	double ganancias, perdidas, neto;
-	cantComidas=0;
     if(archivo.is_open()){
-		archivo.ignore();
+    	archivo.ignore();
 		while(getline(archivo, linea)){
 			
 			getline(archivo, nombre);
@@ -49,21 +51,21 @@ void Carta::leerDatosComidasEnArchivoBase(Comida arr[], int& cantComidas) { //
 			archivo.ignore();
 			
 			comidas[cantComidas]=Comida(nombre, ingredientes, precio, costo, unidades, unidadesVendidas, ganancias, perdidas, neto);
+			
 			cantComidas++;
 		}
 		archivo.close();
 	} else {
 		
 	}
-	/*
-	cout << endl << endl;
+	/*cout << endl << endl;
 	for(int i=0; i<cantComidas; i++){
 		cout << comidas[i].getNombre() << endl;
 	}
-	cout << endl;
-	*/
+	cout << endl;*/
 	
 }
+
 void Carta::pedirDatosCartaParaArchivo(int posicion){//
 	/*ofstream archivo;
 	archivo.open("infoComidas.txt", ios::app);*/
@@ -109,9 +111,13 @@ void Carta::guardarDatosCartaEnArchivo(int k){ // son dos funciones de guardar d
 			archivo << endl << "COMIDA " << i+1 << endl << endl
 				<< "Nombre: " << comidas[i].getNombre() << endl
 				<< "Ingredientes: " << comidas[i].getIngredientes() << endl
-				<< "Precio: " << comidas[i].getPrecio() << endl
-				<< "Costo: " << comidas[i].getCosto() << endl
+				<< "Precio: S/. " << comidas[i].getPrecio() << endl
+				<< "Costo: S/. " << comidas[i].getCosto() << endl
 				<< "Unidades: " << comidas[i].getUnidades() << endl
+				<< "Unidades vendidas: " << comidas[i].getUnidadesVendidas() << endl
+				<< "Ganancias: S/. " << comidas[i].getGanancia() << endl
+				<< "Perdidas: S/. " << comidas[i].getPerdida() << endl
+				<< "Neto: S/. " << comidas[i].getNeto() << endl
 				<< "-------------------------------------------" << endl;
 		}
 	} else {
@@ -126,7 +132,7 @@ void Carta::guardarDatosCartaEnArchivo(int k){ // son dos funciones de guardar d
 			<< "*****************************************************" << endl << endl;
 		//int i=cantClientes;
 		archivo << endl << endl;
-		archivo << "\tNombre" << "\t\t\t\t\tPrecio\t\t\tUnidades" << endl << endl;
+		archivo << "\tNombre" << "\t\t\tPrecio\t\tUnidades" << endl << endl;
 		for(int i=0; i<=cantComidas-k; i++){
 			archivo << comidas[i].getNombre() << "______________________ S/. " << comidas[i].getPrecio() << " ------------> " << comidas[i].getUnidades() << endl << endl;
 		}
@@ -156,7 +162,8 @@ void Factura::guardarDatosFacturaEnArchivo(int k){
 					<< facturas[i].nombreCliente << endl
 					<< facturas[i].nombreComida << endl
 					<< facturas[i].cantidad << endl
-					<< facturas[i].totalPagar << endl;
+					<< facturas[i].totalPagar << endl
+					<< facturas[i].totalInvertido << endl;
 		}
 		archivo.close();
 	} else {
@@ -180,6 +187,31 @@ void Factura::guardarDatosFacturaEnArchivo(int k){
 		archivo.close();
 	} else {
 		cout << "Error al abrir el archivo." << endl;
+	}
+}
+void Factura::leerDatosFacturaEnArchivoBase(Factura facturas[], int& cantFacturas){
+	ifstream archivo;
+    archivo.open("infoFactura.txt");
+    string linea, nombreCliente, nombreComida;
+	double totalPagar, totalInvertido;
+	int cantidad;
+	cantComidas=0;
+    if(archivo.is_open()){
+		archivo.ignore();
+		while(getline(archivo, linea)){
+			
+			getline(archivo, nombreCliente);
+			getline(archivo, nombreComida);
+			archivo >> cantidad >> totalPagar >> totalInvertido;
+			
+			archivo.ignore();
+			
+			facturas[cantFacturas]=Factura(nombreCliente, nombreComida, cantidad, totalPagar, totalInvertido);
+			cantFacturas++;
+		}
+		archivo.close();
+	} else {
+		
 	}
 }
 
@@ -264,25 +296,30 @@ void Carta::ordenarComida(){
 							if(clientes[i].getNombre() == nombre){
 								seguir=true;
 								cout << "G E N E R A N D O   F A C T U R A . . ." << endl << endl;
-								facturas[cantFacturas]=Factura(clientes[i].getNombre(), comidas[num-1].getNombre(), cant, comidas[num-1].getPrecio()*cant);
+								facturas[cantFacturas]=Factura(clientes[i].getNombre(), comidas[num-1].getNombre(), cant, comidas[num-1].getPrecio()*cant, comidas[num-1].getCosto()*cant);
 								Factura fact;
 								fact.guardarDatosFacturaEnArchivo(0);
-								
-								int vendidoAntes=comidas[num-1].getUnidadesVendidas();
-								comidas[num-1].setUnidadesVendidas(vendidoAntes + cant);
-								
-								int gananciasAntes=comidas[num-1].getGanancia();
-								int gananciasAhora=cant*comidas[num-1].getPrecio();
-								comidas[num-1].setGanancia(gananciasAntes+gananciasAhora);
-								
-								int netoNuevo=comidas[num-1].getGanancia() - comidas[num-1].getPerdida();
-								comidas[num-1].setNeto(netoNuevo);
 								
 								int unidadesAntes=comidas[num-1].getUnidades();
 								comidas[num-1].setUnidades(unidadesAntes - cant);
 								
-								guardarDatosCartaEnArchivo(1);
+								int vendidoAntes=comidas[num-1].getUnidadesVendidas();
+								comidas[num-1].setUnidadesVendidas(vendidoAntes + cant);
 								
+								double gananciasAntes=comidas[num-1].getGanancia();
+								double gananciasAhora=cant*comidas[num-1].getPrecio();
+								comidas[num-1].setGanancia(gananciasAntes+gananciasAhora);
+								
+								double perdidaAntes=comidas[num-1].getPerdida();
+								double perdidaAhora=cant*comidas[num-1].getCosto();
+								comidas[num-1].setPerdida(perdidaAntes+perdidaAhora);
+								
+								double netoNuevo=comidas[num-1].getGanancia() - comidas[num-1].getPerdida();
+								comidas[num-1].setNeto(netoNuevo);
+								
+								guardarDatosCartaEnArchivo(1);
+								Finanza finanzas;
+								finanzas.actualizarEstadisticas();
 								//VERIFICAR que todos los datos de ganncias, perdidas, neto se guarden correctamente en infoCOmida
 								//Asegurarse que factura registre todas las facturas por siempre, que no se reinicie
 								//
