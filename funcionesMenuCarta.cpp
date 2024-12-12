@@ -349,11 +349,3 @@ void Carta::mostrarCarta(){
 		cout << comidas[i].getNombre() << " ------------>  S/. " << comidas[i].getPrecio() << "\t  " << comidas[i].getUnidades() << endl;
 	}
 }
-
-/*
-bool validarEntradasNumericas(int limiteSuperior, int limiteInferior, int dato){
-	if(limiteInferior<dato && dato<=limiteSuperior){
-		return true;
-	}
-	return false;
-}*/

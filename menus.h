@@ -6,7 +6,6 @@ using namespace std;
 void menuClientes();
 void menuCarta();
 void menuFinanzas();
-void menuAdministracion();
 
 class Restaurante{
 	private:
@@ -30,13 +29,5 @@ class Personas{
 		
 };
 
-/*
-class Due�o: public Personas{
-	private:
-		string carrera, double sueldo;
-	public:
-		Due�o(string, string, string, int, int, string, double);
-		void mostrarDatosDue�o();
-};*/
 
 #endif
