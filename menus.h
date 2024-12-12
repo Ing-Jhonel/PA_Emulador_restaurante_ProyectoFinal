@@ -14,7 +14,7 @@ class Restaurante{
 		//Carta carta;
 		//Finanzas finanzas;
 		//Personal personal;
-		//Dueño dueño;
+		//Dueï¿½o dueï¿½o;
 	public:
 		Restaurante(string);
 		void mostrarInfoEmpresa();
@@ -31,12 +31,12 @@ class Personas{
 };
 
 /*
-class Dueño: public Personas{
+class Dueï¿½o: public Personas{
 	private:
 		string carrera, double sueldo;
 	public:
-		Dueño(string, string, string, int, int, string, double);
-		void mostrarDatosDueño();
+		Dueï¿½o(string, string, string, int, int, string, double);
+		void mostrarDatosDueï¿½o();
 };*/
 
 #endif

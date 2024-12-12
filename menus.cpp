@@ -133,6 +133,7 @@ void menuFinanzas(){
 	} while(opcion!='E');
 }
 
+/*
 void menuAdministracion(){
 	char opcion;
 	do{
@@ -177,4 +178,4 @@ void menuAdministracion(){
 			}
 	} while(opcion!='G');
 }
-
+*/

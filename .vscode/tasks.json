@@ -1,0 +1,100 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create build directory",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-Command",
+                "if (-not (Test-Path -Path build)) { New-Item -ItemType Directory -Path build }"
+            ]
+        },
+        {
+            "label": "compile main",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "main.cpp",
+                "-o", "build/main.o"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": "create build directory"
+        },
+        {
+            "label": "compile funcionesMenuCarta",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "funcionesMenuCarta.cpp",
+                "-o", "build/funcionesMenuCarta.o"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": "create build directory"
+        },
+        {
+            "label": "compile funcionesMenuClientes",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "funcionesMenuClientes.cpp",
+                "-o", "build/funcionesMenuClientes.o"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": "create build directory"
+        },
+        {
+            "label": "compile funcionesMenuFinanzas",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "funcionesMenuFinanzas.cpp",
+                "-o", "build/funcionesMenuFinanzas.o"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": "create build directory"
+        },
+        {
+            "label": "compile menus",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "menus.cpp",
+                "-o", "build/menus.o"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": "create build directory"
+        },
+        {
+            "label": "link",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "build/main.o",
+                "build/funcionesMenuCarta.o",
+                "build/funcionesMenuClientes.o",
+                "build/funcionesMenuFinanzas.o",
+                "build/menus.o",
+                "-o",
+                "build/emulador_restaurante"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "compile main",
+                "compile funcionesMenuCarta",
+                "compile funcionesMenuClientes",
+                "compile funcionesMenuFinanzas",
+                "compile menus"
+            ]
+        }
+    ]
+}
