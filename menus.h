@@ -27,6 +27,7 @@ class Personas{
 	public:
 		Personas(string, string, string, int, int);
 		void mostrarDatos();
+		
 };
 
 /*

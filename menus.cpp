@@ -80,10 +80,10 @@ void menuCarta(){
 					cartas.eliminarComida();
 					break;
 				case 'D':
-					//comida[cantComidas].ordenarComida();
+					cartas.ordenarComida();
 					break;
 				case 'E':
-					//comida[cantComidas].verCarta();
+					cartas.mostrarCarta();
 					break;
 				case 'F':
 					cout << "Volviendo al menu principal..." << endl;

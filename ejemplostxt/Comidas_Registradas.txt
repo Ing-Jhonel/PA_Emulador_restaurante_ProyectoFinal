@@ -5,27 +5,18 @@
 
 COMIDA 1
 
-Nombre: 6
-Ingredientes: 6
-Precio: 6
-Costo: 6
-Unidades: 6
+Nombre: 1
+Ingredientes: 1
+Precio: 1
+Costo: 1
+Unidades: 1
 -------------------------------------------
 
 COMIDA 2
 
-Nombre: nUEVO
-Ingredientes: 90
-Precio: 90
-Costo: 90
-Unidades: 90
--------------------------------------------
-
-COMIDA 3
-
-Nombre: 9
-Ingredientes: 9
-Precio: 9
-Costo: 9
-Unidades: 9
+Nombre: Jhonel
+Ingredientes: 4
+Precio: 4
+Costo: 4
+Unidades: 0
 -------------------------------------------

@@ -24,6 +24,9 @@ class Cliente: public Personas{
 		void editarClientes();
 		void eliminarClientes();
 		void mostrarOrdenadosClientes();
+		
+		string getNombre() const { return nombre; }
+		
 };
 
 extern Cliente clientes[maxClientes];
