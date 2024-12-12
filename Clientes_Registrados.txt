@@ -6,109 +6,19 @@
 CLIENTE 1
 
 Nombre: Jhonel
-Edad: 23
-DNI: 34
-Telefono: 345
-Correo: 45
-Direccion: 4
+Edad: 18
+DNI: 60833068
+Telefono: +51 936239734
+Correo: jhonelapazapacompia@gmail.com
+Direccion: Avenida Cuzco
 -------------------------------------------
 
 CLIENTE 2
 
-Nombre: 
-Edad: 0
-DNI: 0
-Telefono: 
-Correo: 
-Direccion: 
--------------------------------------------
-
-CLIENTE 3
-
-Nombre: Ejemplo nuevo
-Edad: 77
-DNI: 7
-Telefono: 7
-Correo: 77
-Direccion: 77
--------------------------------------------
-
-CLIENTE 4
-
-Nombre: nUEVOX2
-Edad: 12
-DNI: 1
-Telefono: 1
-Correo: 1
-Direccion: 1
--------------------------------------------
-
-CLIENTE 5
-
-Nombre: 
-Edad: 0
-DNI: 0
-Telefono: 
-Correo: 
-Direccion: 
--------------------------------------------
-
-CLIENTE 6
-
-Nombre: 
-Edad: 0
-DNI: 0
-Telefono: 
-Correo: 
-Direccion: 
--------------------------------------------
-
-CLIENTE 7
-
-Nombre: GGGGGGGGGGGGGGGGG
-Edad: 5
-DNI: 5
-Telefono: 5
-Correo: 5
-Direccion: 5
--------------------------------------------
-
-CLIENTE 8
-
-Nombre: 3
-Edad: 3
-DNI: 3
-Telefono: 3
-Correo: 3
-Direccion: 3
--------------------------------------------
-
-CLIENTE 9
-
-Nombre: 4
-Edad: 4
-DNI: 4
-Telefono: 4
-Correo: 4
-Direccion: 4
--------------------------------------------
-
-CLIENTE 10
-
-Nombre: 4
-Edad: 4
-DNI: 4
-Telefono: 4
-Correo: 4
-Direccion: 4
--------------------------------------------
-
-CLIENTE 11
-
-Nombre: JJJJJ
-Edad: 33
-DNI: 33
-Telefono: 3
-Correo: 
-Direccion: 3
+Nombre: Joel
+Edad: 19
+DNI: 544546
+Telefono: +51 8394593
+Correo: joel@gmail.com
+Direccion: Cerca de mercado grao
 -------------------------------------------

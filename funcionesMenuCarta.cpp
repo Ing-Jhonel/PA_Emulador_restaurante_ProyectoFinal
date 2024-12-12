@@ -1,10 +1,12 @@
 #include "funcionesMenuCarta.h"
 #include "funcionesMenuClientes.h"
 #include "funcionesMenuFinanzas.h"
+#include "funcionesDiseno.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
+char C;
 int cantComidas=0;
 int cantFacturas=0;
 Factura facturas[maxFacturas];
@@ -67,15 +69,33 @@ void Carta::leerDatosComidasEnArchivoBase(Comida comidas[], int& cantComidas) { 
 }
 
 void Carta::pedirDatosCartaParaArchivo(int posicion){//
-	/*ofstream archivo;
+	/*ofstream archivo; 
 	archivo.open("infoComidas.txt", ios::app);*/
 	string nombre, ingredientes; double costo, precio; int unidades;
 	cin.ignore();
-	cout << "Nombre: "; getline(cin, nombre);
-	cout << "Ingredientes: "; getline(cin, ingredientes);
-	cout << "Precio: "; cin >> precio;
-	cout << "Costo: "; cin >> costo;
-	cout << "Unidades: "; cin >> unidades;
+	string texto;
+	int porcentajePantalla=30;
+	
+	texto = "|	Nombre de la comida: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, nombre);
+	
+	texto = "|	Ingredientes de la comida: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, ingredientes);
+	
+	texto = "|	Precio de la comida: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> precio;
+	
+	texto = "|	Costo de la comida: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> costo;
+	
+	texto = "|	Unidades de la comida: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> unidades;
+
 	//comidas[posicion]=Comida(nombre, ingredientes, costo, precio, unidades);
 	comidas[posicion].setDatosPrimarios(nombre, ingredientes, precio, costo, unidades);
 	//archivo.close();
@@ -143,14 +163,26 @@ void Carta::guardarDatosCartaEnArchivo(int k){ // son dos funciones de guardar d
 }
 
 void mostrarComidas(){
-	cout << "Comidas Registradas" << endl << endl;
+	string texto;
+	cout << endl << endl;
+	texto="Comidas Registradas";
+	centrar(texto);
+	int porcentajePantalla=30;
 	for(int i=0; i<cantComidas; i++){
-		cout << "COMIDA " << i+1 << endl << endl
-			<< "Nombre: " << comidas[i].getNombre() << endl
-			<< "Ingredientes: " << comidas[i].getIngredientes() << endl
-			<< "Precio: " << comidas[i].getPrecio() << endl
-			<< "Costo: " << comidas[i].getCosto() << endl
-			<< "Unidades: " << comidas[i].getUnidades() << endl << endl;
+		texto= "COMIDA ";
+		centrar(texto); cout << i+1 << endl << endl;
+		texto = "|	Nombre: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << comidas[i].getNombre() << endl;
+		texto = "|	Ingredientes: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << comidas[i].getIngredientes() << endl;
+		texto = "|	Precio: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\tS/." << comidas[i].getPrecio() << endl;
+		texto = "|	Costo: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\tS/." << comidas[i].getCosto() << endl;
+		texto = "|	Unidades: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << comidas[i].getUnidades() << endl;
+		linea(30, C, 0);
+		cout << endl << endl;
 	}
 }
 void Factura::guardarDatosFacturaEnArchivo(int k){
@@ -216,50 +248,93 @@ void Factura::leerDatosFacturaEnArchivoBase(Factura facturas[], int& cantFactura
 }
 
 void Carta::agregarComida(){
-	ofstream archivo;
+	ofstream archivo;string texto;
 	archivo.open("infoClientes.txt", ios::app);
 	if(archivo.is_open()){
 		if(cantComidas < maxComidas){
-			cout << "Agregando Comida" << endl << endl;
+			C='/';
+			texto="A G R E G A N D O   C O M I D A . . .";
+			enjaular(texto, C);
+			
+			cout << endl << endl << endl;
+			
 			pedirDatosCartaParaArchivo(cantComidas);
 			guardarDatosCartaEnArchivo(0);
 			
+			cout << endl << endl << endl;
+			
 			cantComidas++;	
-			cout << "Comida agregada exitosamente." << endl;
+			C='-';
+			texto="Comida agregado exitosamente.";
+			enlinear(texto, C);
 		} else{
-			cout << "No puede agregar mas. Actualice el limite." << endl;
+			C='-';
+			texto="No puede agregar mas. Actualice el limite de comidas.";
+			enlinear(texto, C);
 		}
+		archivo.close();
 	} else {
-		cout << "Error al abrir el archivo." << endl;
+		C='-';
+		texto="Error al abrir el archivo.";
+		enlinear(texto, C);
 	}
 }
 void Carta::editarComida(){
-	
+	string texto;
 	int num; bool seguir;
-	cout << "Editando Comida" << endl << endl
-		<< "Elija la comida" << endl << endl;
+	C='/';
+	texto="E D I T A N D O   C O M I D A . . .";
+	enjaular(texto, C);
+	
+	cout << endl << endl << endl;
+	
+	C='-';
+	texto="Elija la comida";
+	centrarYSubrayar(texto, C);
 	mostrarComidas();
+	
+	cout << endl << endl;
 	do{
-		cout << "Indique el numero: "; cin >> num;
+		texto="Indique el numero:";
+		centrar(texto);
+		centrarCin(1); cin >> num;
+		
 		if( 0<num && num<=cantComidas){
 			seguir=true;
 			pedirDatosCartaParaArchivo(num-1);
 			guardarDatosCartaEnArchivo(1);
 		} else {
 			seguir=false;
-			cout << "Numero de comida no encontrado. Intente de nuevo." << endl;
+			C='-';
+			texto="Numero de comida no encontrado. Intente de nuevo.";
+			enlinear(texto, C);
 		}
 	} while ( !seguir);
-	cout << "Comida editara exitosamente.";
+	C='-';
+	texto="Comida editada exitosamente.";
+	enlinear(texto, C);
 }
 void Carta::eliminarComida(){
-	
+	string texto;
 	int num; bool seguir;
-	cout << "Eliminando Comida" << endl << endl
-		<< "Elija la comida" << endl << endl;
+	
+	C='/';
+	texto="E L I M I N A N D O   C O M I D A . . .";
+	enjaular(texto, C);
+	
+	cout << endl << endl << endl;
+	C='-';
+	texto="Elija la comida";
+	centrarYSubrayar(texto, C);
 	mostrarComidas();
+	
+	cout << endl << endl;
+	
 	do{
-		cout << "Indique el numero: "; cin >> num;
+		texto="Indique el numero:";
+		centrar(texto);
+		centrarCin(1); cin >> num;
+		
 		if( 0<num && num<=cantComidas){
 			seguir=true;
 			for (int i = num-1; i<cantComidas-1; i++) {
@@ -269,33 +344,67 @@ void Carta::eliminarComida(){
 		    guardarDatosCartaEnArchivo(1);
 		} else {
 			seguir=false;
-			cout << "Numero de comida no encontrado. Intente de nuevo." << endl;
+			C='-';
+			texto="Numero de comida no encontrado. Intente de nuevo.";
+			enlinear(texto, C);
 		}
 	} while (!seguir);
-	cout << "Comida eliminada exitosamente.";
+	C='-';
+	texto="Comida eliminada exitosamente.";
+	enlinear(texto, C);
 }
 void Carta::ordenarComida(){
+	string texto;
 	int num, cant; string nombre; bool seguir;
-	cout << "Ordenando Comida..." << endl << endl
-		<< "Elija la comida a pedir" << endl << endl;
+	C='/';
+	texto="O R D E N A N D O   C O M I D A . . .";
+	enjaular(texto, C);
+	
+	cout << endl << endl << endl;
+	C='-';
+	texto="Elija la comida";
+	centrarYSubrayar(texto,C);
 	mostrarComidas();
+	
+	cout << endl << endl;
 	do{
 		seguir=false;
-		cout << "Indique el numero: "; cin >> num; //indice-1 de la comida
+	C='-';
+		texto="Indique el numero:";
+		centrarYSubrayar(texto,C); cout << endl;
+		centrarCin(1); cin >> num;
+		
+		cout << endl << endl;
 		if( 0<num && num<=cantComidas){
 			//seguir=true;
 			do{
 				seguir=false;
-				cout << "Indique la cantidad: "; cin >> cant;
+				C='-';
+				texto="Indique la cantidad:";
+				centrarYSubrayar(texto, C); cout << endl;
+				centrarCin(1); cin >> cant;
+				
+				cout << endl << endl;
+				
 				if(0<cant && cant<=comidas[num-1].getUnidades()){
 					//seguir=true;
 					do{
 						seguir=false;
-						cout << "Indique a que nombre: "; cin >> nombre;
+						C='-';
+						texto="Indique a nombre de quien:";
+						centrarYSubrayar(texto, C); cout << endl;
+						centrarCin(1); cin >> nombre;
+						
+						cout << endl << endl << endl;
 						for(int i=0; i<cantClientes; i++){
 							if(clientes[i].getNombre() == nombre){
 								seguir=true;
-								cout << "G E N E R A N D O   F A C T U R A . . ." << endl << endl;
+								C='$';
+								texto="G E N E R A N D O   F A C T U R A . . .";
+								enlinear(texto, C);
+								
+								cout << endl << endl << endl;
+								
 								facturas[cantFacturas]=Factura(clientes[i].getNombre(), comidas[num-1].getNombre(), cant, comidas[num-1].getPrecio()*cant, comidas[num-1].getCosto()*cant);
 								Factura fact;
 								fact.guardarDatosFacturaEnArchivo(0);
@@ -327,26 +436,53 @@ void Carta::ordenarComida(){
 							}
 						}
 						if(!seguir){
-							cout << "Cliente no encontrado. Intente de nuevo." << endl;
+							C='-';
+							texto="Cliente no encontrado. Intente de nuevo.";
+							enlinear(texto, C);
 						}
 					} while(!seguir);
 				} else if (comidas[num-1].getUnidades()==0){
-					cout << "Comida sin unidades. Pruebe con otra comida." << endl << endl;
-					cout << "Indique el numero: "; cin >> num;
+					C='-';
+					texto="Comida sin unidades. Pruebe con otra comida.";
+					enlinear(texto, C);
+						
+					cout << endl << endl;
+					
+					C='-';
+					texto="Indique el numero:";
+					centrarYSubrayar(texto,C); cout << endl;
+					centrarCin(1); cin >> num;
 				}else {
-					cout << "Cantidad no disponible. Intente de nuevo." << endl << endl;
+					C='-';
+					texto="Cantidad no disponible. Intente de nuevo.";
+					enlinear(texto, C);
 				}
 			} while(!seguir);
 		} else {
-			cout << "Numero de comida no encontrado. Intente de nuevo." << endl << endl;
+			C='-';
+			texto="Numero de comida no encontrado. Intente de nuevo.";
+			enlinear(texto, C);
 		}
 	} while (!seguir);
 }
 void Carta::mostrarCarta(){
-	cout << "Carta del restaurante" << endl << endl;
-	cout << "Nombre" << "\t\t\tPrecio\t\tDisponibles" << endl << endl;
+	C='/';string texto;
+	texto="Carta del restaurante";
+	enjaular(texto, C);
+	
+	cout << endl << endl << endl;
+	
+	int por=30;
+	texto="     Nombre\t\tPrecio\t\tDisponibles";
+	imprimirEnEspaciadoPorcentaje(texto, por);
+	
+	por=33;
+	cout << endl << endl << endl;
 	for(int i=0; i<cantComidas; i++){
-		cout << comidas[i].getNombre() << " ------------>  S/. " << comidas[i].getPrecio() << "\t  " << comidas[i].getUnidades() << endl;
+		texto="";
+		imprimirEnEspaciadoPorcentaje(texto, por);
+		cout << comidas[i].getNombre() << " ------------>  S/. " << comidas[i].getPrecio() << "\t    " << comidas[i].getUnidades() << endl;
+		cout << endl << endl;
 	}
 }
 

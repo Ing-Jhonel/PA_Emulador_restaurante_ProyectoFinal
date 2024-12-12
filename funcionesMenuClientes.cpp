@@ -1,8 +1,10 @@
 #include "funcionesMenuClientes.h"
+#include "funcionesDiseno.h"
 #include "menus.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
+
 
 int cantClientes=0;
 Cliente clientes[maxClientes];
@@ -41,18 +43,41 @@ void Cliente::leerDatosClienteEnArchivoBase(Cliente arr[], int &cantClientes) {
     }
 }
 void Cliente::pedirDatosClienteParaArchivo(int posicion){ //funcion que pide datos de un arreglo para meterlos en una posicion especifica
-	ofstream archivo;
+	ofstream archivo; 
 	archivo.open("infoClientes.txt", ios::app);
 	string nombre, telefono, correo, direccion;
 	int edad, dni;
+	string texto; char c;
+	int porcentajePantalla = 30;
+	
 	cin.ignore();
-	cout << "Nombre: "; getline(cin, nombre);
-	cout << "Edad: "; cin >> edad;
-	cout << "DNI: "; cin >> dni;
+	
+	texto = "|	Nombre del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, nombre);
+	
+	texto = "|	Edad del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> edad;
+	
+	texto = "|	DNI del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> dni;
+	
 	cin.ignore();
-	cout << "Telofono: "; getline(cin, telefono);
-	cout << "Correo: "; getline(cin, correo);
-	cout << "Direccion: "; getline(cin, direccion);
+	
+	texto = "|	Telofono del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, telefono);
+	
+	texto = "|	Correo del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, correo);
+	
+	texto = "|	Direccion del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	getline(cin, direccion);
+	
 	clientes[posicion]=Cliente(nombre, telefono, correo, edad, dni, direccion);
 	archivo.close();
 }
@@ -94,54 +119,91 @@ void Cliente::guardarDatosClienteEnArchivo(int k){ // son dos funciones de guard
 }
 
 void Cliente::agregarClientes(){
-	
+	string texto; char c;
 	ofstream archivo;
 	archivo.open("infoClientes.txt", ios::app);
 	if(archivo.is_open()){
 		if(cantClientes < maxClientes){
-			//cantClientes=retornarContador();
-			cout << "Agregando Cliente" << endl << endl;
+			c='+';
+			texto="A G R E G A N D O   C L I E N T E . . .";
+			enjaular(texto, c);
+			
+			cout << endl << endl << endl;
 			
 			pedirDatosClienteParaArchivo(cantClientes);
 			guardarDatosClienteEnArchivo(0);
 			
+			cout << endl << endl << endl;
 			archivo.close();
 			cantClientes++;
-			cout << "Cliente agregado exitosamente." << endl;
+			c='-';
+			texto="Cliente agregado exitosamente.";
+			enlinear(texto, c);
 		} else {
-			cout << "No puede agregar mas. Actualice el limite de clientes." << endl;
+			c='-';
+			texto="No puede agregar mas. Actualice el limite de clientes.";
+			enlinear(texto, c);
 		}
 	} else {
-		cout << "Error al abrir el archivo." << endl;
+		c='-';
+		texto="Error al abrir el archivo.";
+		enlinear(texto, c);
 	}
 }
 void Cliente::editarClientes(){
-	
+	string texto; char c;
 	/*ifstream archivo;
 	archivo.open("Clientes_Registrados.txt");*/
 	
 	int buscarDni;
-	cout << "Editando Cliente" << endl << endl
-		<< "Indique DNI: "; cin >> buscarDni;
+	c='+';
+	texto="E D I T A N D O   C L I E N T E . . .";
+	enjaular(texto, c);
+	
+	cout << endl << endl << endl;
+	
+	centrar(texto); cout << endl;
+	centrarCin(1); cin >> buscarDni;
+	
+	cout << endl << endl << endl;
 	for(int i=0; i<cantClientes; i++){
 		if(clientes[i].DNI == buscarDni){
-			cout << "Cliente encontrado. Indique sus datos nuevos." << endl << endl;
+			c='-';
+			texto="Cliente encontrado. Indique sus datos nuevos.";
+			enlinear(texto, c);
+			
+			cout << endl << endl;
+			
 			pedirDatosClienteParaArchivo(i);
 			guardarDatosClienteEnArchivo(1);
-			cout << "Cliente editado exitosamente." << endl << endl;
+			
+			cout << endl << endl << endl;
+			
+			c='-';
+			texto="Cliente encontrado. Indique sus datos nuevos.";
+			enlinear(texto, c);
+			
 			//archivo.close();
 			break;
 		}
 	}
-	cout << "Cliente no encontrado." << endl << endl;
+	c='-';
+	texto="Cliente no encontrado.";
+	enlinear(texto, c);
 }
 void Cliente::eliminarClientes(){
-    int buscarDni;
-    cout << "Eliminando Cliente" << endl
-         << "Indique DNI: ";
-    cin >> buscarDni;
-
-    // Buscar el cliente a eliminar
+    int buscarDni;string texto; char c;
+	c='+';
+	texto="E L I M I N A N D O   C L I E N T E . . .";
+	enjaular(texto, c);
+	
+	cout << endl << endl << endl;
+	
+	centrar(texto); cout << endl;
+	centrarCin(1); cin >> buscarDni;
+	
+	cout << endl << endl << endl;
+	
     int indiceEliminar = -1;
     for (int i = 0; i < cantClientes; ++i) {
         if (clientes[i].DNI == buscarDni) {
@@ -151,11 +213,15 @@ void Cliente::eliminarClientes(){
     }
 
     if (indiceEliminar == -1) {
-        cout << "Cliente no encontrado." << endl;
+        c='-';
+		texto="Cliente no encontrado.";
+		enlinear(texto, c);
         return;
     }
 
-    cout << "Cliente encontrado. Eliminacion en proceso..." << endl;
+    c='!';
+	texto="Cliente encontrado. Eliminacion en proceso.";
+	enlinear(texto, c);
 
     // Desplazar los elementos posteriores al cliente eliminado
     for (int i = indiceEliminar; i < cantClientes - 1; ++i) {
@@ -165,8 +231,11 @@ void Cliente::eliminarClientes(){
     guardarDatosClienteEnArchivo(1);
 }
 void Cliente::mostrarOrdenadosClientes() {
-    if (cantClientes == 0) {
-        cout << "No hay clientes registrados para mostrar." << endl;
+    string texto; char c;
+	if (cantClientes == 0) {
+        c='-';
+		texto="No hay cliente registrados.";
+		enlinear(texto, c);
         return;
     }
 
@@ -189,16 +258,31 @@ void Cliente::mostrarOrdenadosClientes() {
     }
 
     // Mostrar los clientes ordenados
-    cout << "Clientes ordenados por nombre: " << endl << endl;
-    for (int i = 0; i < cantClientes; ++i) {
-        cout << "Nombre: " << copiaClientes[i].nombre << endl;
-        cout << "Edad: " << copiaClientes[i].edad << endl;
-        cout << "DNI: " << copiaClientes[i].DNI << endl;
-        cout << "Telefono: " << copiaClientes[i].telefono << endl;
-        cout << "Correo: " << copiaClientes[i].correo << endl;
-        cout << "Direccion: " << copiaClientes[i].direccion << endl;
-        cout << "----------------------------------" << endl;
-    }
-}
-
+    c='+';
+    texto="Clientes ordenados por nombre: ";
+    enjaular(texto, c);
+    
+    cout << endl << endl << endl;
+    
+    int porcentajePantalla = 30;
+    c='_';
+    for(int i=0; i<cantClientes; i++){
+		
+		texto = "|	Nombre: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].nombre << endl;
+		texto = "|	Edad: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].edad << endl;
+		texto = "|	DNI: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].DNI << endl;
+		texto = "|	Telefono: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].telefono << endl;
+		texto = "|	Correo: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].correo << endl;
+		texto = "|	Direccion: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << copiaClientes[i].direccion << endl;
+		linea(30, c, 0);
+		cout << endl << endl;
+	}                
+} 
+	
 

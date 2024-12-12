@@ -3,6 +3,7 @@
 #include "funcionesMenuClientes.h"
 #include "funcionesMenuCarta.h"
 #include "funcionesMenuFinanzas.h"
+#include "funcionesDiseno.h"
 using namespace std;
 
 Personas::Personas(string n, string t, string c, int e, int dni){
@@ -22,16 +23,41 @@ void Personas::mostrarDatos(){
 
 
 void menuClientes(){
-	char opcion;
+	char opcion; string texto; char c;
 	do{
-		cout << "Menu Cliente" << endl << endl
-			<< "A) Agregar cliente" << endl
-			<< "B) Editar cliente" << endl
-			<< "C) Eliminar cliente" << endl
-			<< "D) Ver clientes ordenados alfabeticamente" << endl
-			<< "E) Volver menu principal" << endl << endl
-			<< "= "; cin >> opcion;
+		separador(c);
+		texto="MENU CLIENTE";
+		c='+';
+		separador(c);
+		centrarParaPintar(texto); 
+		separador(c);
+		cout << endl << endl << endl;
+		
+		c='.';
+		texto = "Indique la accion a realizar";
+		enjaular(texto, c);
+		cout << endl << endl;
 			
+		int anchoJaula=50;
+		int salto=2;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Agregar cliente";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Editar cliente";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Eliminar cliente";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Ver clientes ordenados alfabeticamente";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Volver menu principal";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "---------------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> opcion;
+		
+		system("cls");
 			switch(opcion){
 				case 'A':
 					clientes[cantClientes].agregarClientes();
@@ -46,28 +72,58 @@ void menuClientes(){
 					clientes[cantClientes].mostrarOrdenadosClientes();
 					break;
 				case 'E':
-					cout << "Volviendo al menu principal..." << endl;
+					c='-';
+					texto="Volviendo al menu principal.";
+					enlinear(texto, c);
 					break;
 				default:
-					cout << "Indique una opcion valida." << endl;
+					c='-';
+					texto="Indique una opcion valida.";
+					enlinear(texto, c);
 					break;
-			}
+			}cout << endl << endl;system("pause");system("cls");
 	} while(opcion!='E');
 }
 
 void menuCarta(){
 	char opcion;
 	Carta cartas;
+	char c; string texto;
 	do{
-		cout << "Menu Carta" << endl << endl
-			<< "A) Agregar comida" << endl
-			<< "B) Editar comida" << endl
-			<< "C) Eliminar carta" << endl
-			<< "D) Ordenar comida" << endl
-			<< "E) Ver carta" << endl
-			<< "F) Volver menu principal" << endl << endl
-			<< "= "; cin >> opcion;
+		c='/';
+		separador(c);
+		texto="MENU CARTA";
+		separador(c);
+		centrarParaPintar(texto); 
+		separador(c);
+		cout << endl << endl << endl;
+		
+		c='.';
+		texto = "Indique la accion a realizar";
+		enjaular(texto, c);
+		cout << endl << endl;
 			
+		int anchoJaula=50;
+		int salto=2;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Agregar comida";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Editar carta";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Eliminar comida";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Ordenar comida";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Ver carta";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "F) Volver menu principal";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "---------------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> opcion;
+			system("cls");
 			cout << endl << endl;
 			switch(opcion){
 				case 'A':
@@ -86,28 +142,57 @@ void menuCarta(){
 					cartas.mostrarCarta();
 					break;
 				case 'F':
-					cout << "Volviendo al menu principal..." << endl;
+					c='-';
+					texto="Volviendo al menu principal.";
+					enlinear(texto, c);
 					break;
 				default:
-					cout << "Indique una opcion valida." << endl;
+					c='-';
+					texto="Indique una opcion valida.";
+					enlinear(texto, c);
 					break;
 			}
-			cout << endl << endl;
+			cout << endl << endl;system("pause");system("cls");
 	} while(opcion!='F');
 }
 
 void menuFinanzas(){
 	Finanza finanzas;
-	char opcion;
+	char opcion; char c; string texto;
 	do{
-		cout << "Menu Finanzas" << endl << endl
-			<< "A) Gastos y ganancias" << endl
-			<< "B) Ordenar mas vendido" << endl
-			<< "C) Estadisticas generales" << endl
-			<< "D) Mostrar facturas" << endl
-			<< "E) Volver menu principal" << endl << endl
-			<< "= "; cin >> opcion;
+		c='$';
+		separador(c);
+		texto="MENU FINANZAS";
+		separador(c);
+		centrarParaPintar(texto); 
+		separador(c);
+		cout << endl << endl << endl;
+		
+		c='.';
+		texto = "Indique la accion a realizar";
+		enjaular(texto, c);
+		cout << endl << endl;
 			
+		int anchoJaula=50;
+		int salto=2;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Gastos y ganancias";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Ordenar mas vendido";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Estadisticas generales";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Mostrar facturas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Volver menu principal";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "---------------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> opcion;
+		
+		system("cls");
 			cout << endl << endl;
 			switch(opcion){
 				case 'A':
@@ -123,16 +208,21 @@ void menuFinanzas(){
 					finanzas.mostrarFacturas();
 					break;
 				case 'E':
-					cout << "Volviendo al menu principal..." << endl;
+					c='-';
+					texto="Volviendo al menu principal.";
+					enlinear(texto, c);
 					break;
 				default:
-					cout << "Indique una opcion valida." << endl;
+					c='-';
+					texto="Indique una opcion valida.";
+					enlinear(texto, c);
 					break;
 			}
-			cout << endl << endl;
+			cout << endl << endl;system("pause");system("cls");
 	} while(opcion!='E');
 }
 
+/*
 void menuAdministracion(){
 	char opcion;
 	do{
@@ -176,5 +266,5 @@ void menuAdministracion(){
 					break;
 			}
 	} while(opcion!='G');
-}
+}*/
 

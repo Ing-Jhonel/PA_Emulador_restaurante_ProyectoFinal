@@ -1,9 +1,11 @@
 #include "funcionesMenuFinanzas.h"
 #include "funcionesMenuCarta.h"
+#include "funcionesDiseno.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
+string texto; char c;
 Finanza::Finanza(double g, double p, double n){
 	gananciasTotales=g;
 	perdidasTotales=p;
@@ -22,16 +24,29 @@ void Finanza::actualizarEstadisticas(){
 
 void Finanza::mostrarGastosYGanancias(){
 	actualizarEstadisticas();
-	cout << "Calculando gastos y ganancias totales" << endl << endl
-		<< "Ganancias totales: " << gananciasTotales << endl
-		<< "Perdidas totales: " << perdidasTotales << endl
-		<< "Ganancia neta: " << netoTotal << endl;
+	
+	c='$';
+	texto="CALCULANDO GASTOS Y GANANCIAS";
+	enjaular(texto, c);
+	
+	cout << endl << endl << endl;
+	
+	texto="Ganancias totales: S/. ";
+	centrar(texto); cout << gananciasTotales << endl << endl;
+	
+	texto="Perdidas totales: S/. ";
+	centrar(texto); cout << perdidasTotales << endl << endl;
+	
+	texto="Ganancia neta: S/. ";
+	centrar(texto); cout << netoTotal << endl << endl;
+	
 }
 void Finanza::ordenarMasVendido() {
     Comida copia[maxComidas];
-
     if (cantComidas == 0) {
-        cout << "No hay comidas registradas." << endl;
+        c='-';
+			texto="No hay comidas registradas.";
+			enlinear(texto, c);
         return;
     }
 
@@ -48,10 +63,15 @@ void Finanza::ordenarMasVendido() {
             }
         }
     }
-
-    cout << "Comidas mas vendidas (ordenado de mayor a menor)" << endl << endl;
+	c='$';
+    texto="Comidas mas vendidas (ordenado de mayor a menor)";
+    enjaular(texto, c);
+    
+    cout << endl << endl << endl;
+    int por=33;
     for (int i = 0; i < cantComidas; i++) {
-        cout << copia[i].getNombre() << " ----> " << copia[i].getUnidadesVendidas() << endl;
+    	imprimirEnEspaciadoPorcentaje("", por);
+        cout << copia[i].getNombre() << " ----> " << copia[i].getUnidadesVendidas() << endl << endl;
     }
 }
 
@@ -114,16 +134,26 @@ void Finanza::leerEstadisticasDesdeArchivoBinario() {
         archivo.read((char*)&RIG, sizeof(RIG));
 
         archivo.close();
-
-        cout << "Ingresos brutos ---------> S/. " << gananciasTotales << endl
-             << "Egresos brutos -----------> S/. " << perdidasTotales << endl
-             << "Ingresos netos -----------> S/. " << netoTotal << endl
-             << "Ticket promedio ----------> S/. " << ticketPromedio << endl
-             << "Margen de ganancia neta --> " << margenGananciaNeta << "%" << endl
-             << "ROI ----------------------> " << ROI << "%" << endl
-             << "RIG ----------------------> " << RIG << endl;
+		
+		int por=25;
+		imprimirEnEspaciadoPorcentaje("",por);
+        cout << "Ingresos brutos ---------> S/. " << gananciasTotales << endl << endl;
+        imprimirEnEspaciadoPorcentaje("",por);
+             cout << "Egresos brutos -----------> S/. " << perdidasTotales << endl << endl;
+             imprimirEnEspaciadoPorcentaje("",por);
+             cout<< "Ingresos netos -----------> S/. " << netoTotal << endl << endl;
+             imprimirEnEspaciadoPorcentaje("",por);
+             cout<< "Ticket promedio ----------> S/. " << ticketPromedio << endl << endl;
+             imprimirEnEspaciadoPorcentaje("",por);
+             cout<< "Margen de ganancia neta --> " << margenGananciaNeta << "%" << endl << endl;
+             imprimirEnEspaciadoPorcentaje("",por);
+             cout<< "ROI ----------------------> " << ROI << "%" << endl << endl;
+             imprimirEnEspaciadoPorcentaje("",por);
+             cout<< "RIG ----------------------> " << RIG << endl << endl;
     } else {
-        cerr << "Error al abrir el archivo para leer." << endl;
+        c='-';
+			texto="Error al abrir el archivo.";
+			enlinear(texto, c);
     }
 }
 
@@ -133,13 +163,27 @@ void Finanza::mostrarEstadisticasGenerales(){
 }
 
 void Finanza::mostrarFacturas(){
-	cout << "Facturas registradas" << endl << endl;
-	cout << cantFacturas << endl << endl;
+	
+	texto="F A C T U R A S   R E G I S T R A D A S";
+	c='$';
+	enjaular(texto, c);
+	
+	cout << endl << endl << endl;
+	int porcentajePantalla=25;
 	for(int i=0; i<cantFacturas; i++){
-		cout << "FACTURA " << i+1  << endl << endl
-			<< "A nombre de: " << facturas[i].getNombreCliente() << endl
-			<< "Comida: " << facturas[i].getNombreComida() << endl
-			<< "Cantidad: " << facturas[i].getCantidad() << endl
-			<< "Total pagado: " << facturas[i].getTotalPagar() << endl << endl;
+		texto= "FACTURA ";
+		centrar(texto); cout << i+1 << endl << endl;
+		
+		texto = "|	A nombre de: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << facturas[i].getNombreCliente() << endl;
+		
+		texto = "|	Comida: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << facturas[i].getNombreComida() << endl;
+		
+		texto = "|	Cantidad: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << facturas[i].getCantidad() << endl;
+		
+		texto = "|	Total pagado: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << "\t" << facturas[i].getTotalPagar() << endl;
 	}
 }
