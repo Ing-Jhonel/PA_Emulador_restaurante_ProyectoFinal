@@ -485,11 +485,3 @@ void Carta::mostrarCarta(){
 		cout << endl << endl;
 	}
 }
-
-/*
-bool validarEntradasNumericas(int limiteSuperior, int limiteInferior, int dato){
-	if(limiteInferior<dato && dato<=limiteSuperior){
-		return true;
-	}
-	return false;
-}*/

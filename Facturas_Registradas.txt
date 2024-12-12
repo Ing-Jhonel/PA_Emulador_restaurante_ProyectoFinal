@@ -5,18 +5,63 @@
 FACTURA 1
 
 A nombre de: Jhonel
-Comida: Pizza
-Cantidad: 5
+Comida: Hola
+Cantidad: 10
 
- - Total a pagar --> S/. 250
+ - Total a pagar --> S/. 120
 _______________________________________
 
 FACTURA 2
 
 A nombre de: Jhonel
-Comida: Arroz chaufa
+Comida: Nuevo
 Cantidad: 10
 
- - Total a pagar --> S/. 200
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 3
+
+A nombre de: Jhonel
+Comida: Jhonel
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 4
+
+A nombre de: Jhonel
+Comida: Jhonel
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 5
+
+A nombre de: Jhonel
+Comida: Nuevo
+Cantidad: 10
+
+ - Total a pagar --> S/. 100
+_______________________________________
+
+FACTURA 6
+
+A nombre de: Jhonel
+Comida: 456
+Cantidad: 10
+
+ - Total a pagar --> S/. 4560
+_______________________________________
+
+FACTURA 7
+
+A nombre de: Jhonel
+Comida: 456
+Cantidad: 19
+
+ - Total a pagar --> S/. 8664
 _______________________________________
 

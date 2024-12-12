@@ -5,26 +5,91 @@
 
 COMIDA 1
 
-Nombre: Pizza
-Ingredientes: queso, harina, tomate
-Precio: S/. 50
-Costo: S/. 20
-Unidades: 5
-Unidades vendidas: 5
-Ganancias: S/. 250
-Perdidas: S/. 100
-Neto: S/. 150
+Nombre: hOLA
+Ingredientes: 3
+Precio: S/. 3
+Costo: S/. 3
+Unidades: 0
+Unidades vendidas: 0
+Ganancias: S/. 0
+Perdidas: S/. 0
+Neto: S/. 0
 -------------------------------------------
 
 COMIDA 2
 
-Nombre: Arroz chaufa
-Ingredientes: arroz, huevo, carne, etc
-Precio: S/. 20
-Costo: S/. 10
-Unidades: 40
-Unidades vendidas: 10
-Ganancias: S/. 200
-Perdidas: S/. 100
-Neto: S/. 100
+Nombre: 34534
+Ingredientes: 345
+Precio: S/. 234
+Costo: S/. 234
+Unidades: 34
+Unidades vendidas: 0
+Ganancias: S/. 0
+Perdidas: S/. 0
+Neto: S/. 0
+-------------------------------------------
+
+COMIDA 3
+
+Nombre: Jhonel
+Ingredientes: nose
+Precio: S/. 10
+Costo: S/. 5
+Unidades: 70
+Unidades vendidas: 30
+Ganancias: S/. 300
+Perdidas: S/. 150
+Neto: S/. 150
+-------------------------------------------
+
+COMIDA 4
+
+Nombre: Nuevo
+Ingredientes: nose
+Precio: S/. 10
+Costo: S/. 5
+Unidades: 70
+Unidades vendidas: 30
+Ganancias: S/. 300
+Perdidas: S/. 150
+Neto: S/. 150
+-------------------------------------------
+
+COMIDA 5
+
+Nombre: Hola
+Ingredientes: 12
+Precio: S/. 12
+Costo: S/. 1212
+Unidades: 0
+Unidades vendidas: 12
+Ganancias: S/. 144
+Perdidas: S/. 14544
+Neto: S/. -14400
+-------------------------------------------
+
+COMIDA 6
+
+Nombre: 0'0
+Ingredientes: 0
+Precio: S/. 0
+Costo: S/. 0
+Unidades: 0
+Unidades vendidas: 0
+Ganancias: S/. 0
+Perdidas: S/. 0
+Neto: S/. 0
+-------------------------------------------
+
+COMIDA 7
+
+Nombre: 456
+Ingredientes: 456
+Precio: S/. 456
+Costo: S/. 456
+Unidades: 27
+Unidades vendidas: 29
+Ganancias: S/. 13224
+Perdidas: S/. 13224
+Neto: S/. 0
 -------------------------------------------

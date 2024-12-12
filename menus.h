@@ -6,7 +6,6 @@ using namespace std;
 void menuClientes();
 void menuCarta();
 void menuFinanzas();
-void menuAdministracion();
 
 class Restaurante{
 	private:
@@ -14,7 +13,7 @@ class Restaurante{
 		//Carta carta;
 		//Finanzas finanzas;
 		//Personal personal;
-		//Dueño dueño;
+		//Dueï¿½o dueï¿½o;
 	public:
 		Restaurante(string);
 		void mostrarInfoEmpresa();
@@ -30,13 +29,5 @@ class Personas{
 		
 };
 
-/*
-class Dueño: public Personas{
-	private:
-		string carrera, double sueldo;
-	public:
-		Dueño(string, string, string, int, int, string, double);
-		void mostrarDatosDueño();
-};*/
 
 #endif

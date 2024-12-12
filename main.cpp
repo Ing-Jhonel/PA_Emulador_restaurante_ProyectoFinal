@@ -12,11 +12,6 @@ int main(){
 	registroCliente.leerDatosClienteEnArchivoBase(clientes, cantClientes);
 	Carta registroComidas;
 	registroComidas.leerDatosComidasEnArchivoBase(comidas, cantComidas); 
-	/*
-	cout << endl << endl << cantComidas << endl << endl;
-	for(int i=0; i<cantClientes; i++){
-		cout << clientes[i].getNombre() << endl;
-	}*/
 	cout << endl;
 	int opcion;
 	system("pause");
@@ -37,7 +32,7 @@ int main(){
 		texto = "Elija a que menu va a entrar";
 		enjaular(texto, c);
 		cout << endl << endl;
-			
+
 			int anchoJaula=40;
 		int salto=2;
 		linea(anchoJaula, c, salto); cout << endl;
@@ -79,6 +74,6 @@ int main(){
 					break;
 			}
 			system("cls");
-	} while (opcion != 5);
+	} while (opcion != 4);
 	return 0;
 }
